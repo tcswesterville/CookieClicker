@@ -11,7 +11,11 @@ pygame.init()
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption(APPLICATION_CAPTION)
 
-mainButton = buttonCircle.ButtonCircle(x = 200, y = 300, radius = ((screen_height if screen_height <= screen_width else screen_width) // 4), backgroundImage = "Assets/Images/cookieButton.png")
+mainButton = buttonCircle.ButtonCircle(
+    x = screen_width // 2, 
+    y = screen_height // 2, 
+    radius = ((screen_height if screen_height <= screen_width else screen_width) // 2), 
+    backgroundImage = "Assets/Images/cookieButton.png")
 
 isRunning = True
 while isRunning:
