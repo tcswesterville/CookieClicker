@@ -1,3 +1,5 @@
+from pygame import font
+
 # Initial Screen dimensions
 screen_width = 800
 screen_height = 600
@@ -5,8 +7,11 @@ screen_height = 600
 # Text
 APPLICATION_CAPTION = "Cookie Clicker"
 
-# Colors
-
 # Image Imports
-mainBackgroundImage = "../Assets/Images/CookieClickerBackground01.webp"
-mainButtonImage = "../Assets/Images/cookieButton.png"
+mainBackgroundImage = "Assets/Images/CookieClickerBackground01.webp"
+mainButtonImage = "Assets/Images/cookieButton.png"
+
+# Fonts
+font.init()
+mainFontSize = 36
+mainFont = font.Font(None, mainFontSize)
