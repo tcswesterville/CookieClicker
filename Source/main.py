@@ -26,11 +26,11 @@ mainButton = buttonCircle.ButtonCircle(
 
 # Create the shop button
 shopButton = button.Button(
-    x=screen_width // 2,
-    y=screen_height // 2,
-    width = 1000,
-    height = 1000,
-    backgroundImage = shopButtonImage
+    x=0,
+    y=0,
+    width=1000,
+    height=1000,
+    backgroundImage=shopButtonImage
 )
 
 # Set up clock for fixed frame rate
@@ -44,16 +44,23 @@ while isRunning:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             isRunning = False
+
         # Check for main button click
         elif mainButton.onClicked(event, pygame.mouse.get_pos()):
             cookies += 1
             score += 1
+            print(f"Main button clicked! Cookies: {cookies}, Score: {score}")  # Debugging
+
+        # Check for shop button click
+        elif shopButton.onClicked(event, pygame.mouse.get_pos()):
+            print("Shop button clicked!")  # Debugging
 
     # Render background
     screen.blit(background, (0, 0))
 
-    # Render main button
+    # Render buttons
     mainButton.renderButton(screen)
+    shopButton.renderButton(screen)
 
     # Render cookie count
     cookieText = mainFont.render(f"Cookies: {cookies}", True, (255, 255, 255))
@@ -63,15 +70,12 @@ while isRunning:
     scoreText = mainFont.render(f"Score: {score}", True, (255, 255, 255))
     screen.blit(scoreText, (10, 10 + mainFontSize))
 
-    # Render Shop Button
-    shopButton.renderButton(screen)
-
     # Update the display
     pygame.display.flip()
 
     # Limit the frame rate
     clock.tick(60)  # Cap the frame rate at 60 FPS
 
-# Quit from running state
+# Quit Pygame
 pygame.quit()
 sys.exit()
