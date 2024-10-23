@@ -1,6 +1,7 @@
 import pygame
 import sys
 import buttonCircle
+import button
 from definitions import *
 from userVariables import *
 
@@ -21,6 +22,15 @@ mainButton = buttonCircle.ButtonCircle(
     y=screen_height // 2,
     radius=((screen_height if screen_height <= screen_width else screen_width) // 2),
     backgroundImage=mainButtonImage
+)
+
+# Create the shop button
+shopButton = button.Button(
+    x=screen_width // 2,
+    y=screen_height // 2,
+    width = 1000,
+    height = 1000,
+    backgroundImage = shopButtonImage
 )
 
 # Set up clock for fixed frame rate
@@ -52,6 +62,9 @@ while isRunning:
     # Render score
     scoreText = mainFont.render(f"Score: {score}", True, (255, 255, 255))
     screen.blit(scoreText, (10, 10 + mainFontSize))
+
+    # Render Shop Button
+    shopButton.renderButton(screen)
 
     # Update the display
     pygame.display.flip()

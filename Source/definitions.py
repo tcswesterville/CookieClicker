@@ -10,6 +10,7 @@ APPLICATION_CAPTION = "Cookie Clicker"
 # Image Imports
 mainBackgroundImage = "Assets/Images/CookieClickerBackground01.webp"
 mainButtonImage = "Assets/Images/cookieButton.png"
+shopButtonImage = "Assets/Images/shopButton.png"
 
 # Fonts
 font.init()
