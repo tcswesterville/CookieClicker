@@ -5,9 +5,12 @@ import button
 from definitions import *
 from userVariables import *
 
-# Load and scale the background image
-background = pygame.image.load(mainBackgroundImage)
-background = pygame.transform.scale(background, (screen_width, screen_height))
+# Load and scale the mainBackground image
+mainBackground = pygame.image.load(mainBackgroundImage)
+mainBackground = pygame.transform.scale(mainBackground, (screen_width, screen_height))
+
+# Initialize the screen
+currentScreen = "mainScreen"
 
 # Initialize Pygame
 pygame.init()
@@ -26,11 +29,11 @@ mainButton = buttonCircle.ButtonCircle(
 
 # Create the shop button
 shopButton = button.Button(
-    x=0,
-    y=0,
-    width=1000,
-    height=1000,
-    backgroundImage=shopButtonImage
+    x=screen_width - (screen_width // 8) - int(screen_width * 0.0125),
+    y=screen_height - ((screen_height // 8) / 2) - int(screen_height  * (1 / 36)),
+    width = screen_width // 8,
+    height = screen_height // 8,
+    backgroundImage = shopButtonImage
 )
 
 # Set up clock for fixed frame rate
@@ -44,23 +47,37 @@ while isRunning:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             isRunning = False
+        if currentScreen == "main":
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                # Check for main button click
+                mousePosition = pygame.mouse.get_pos()
+                if mainButton.onClicked(event, mousePosition):
+                    cookies += 1
+                    score += 1
+                if shopButton.onClicked(event, mousePosition):
+                    print("Shop Button Clicked:")
+                    print(f"X: {mousePosition[0]}, Y: {mousePosition[1]}")
+                    currentScreen = "shopScreen"
+                    print("Switching to screen: shopScreen")
+        elif currentScreen == "shopScreen":
+            pass
 
-        # Check for main button click
-        elif mainButton.onClicked(event, pygame.mouse.get_pos()):
-            cookies += 1
-            score += 1
-            print(f"Main button clicked! Cookies: {cookies}, Score: {score}")  # Debugging
+    # Render main screen specific things
+    if currentScreen == "mainScreen":
+        # Render mainBackground
+        screen.blit(mainBackground, (0, 0))
 
-        # Check for shop button click
-        elif shopButton.onClicked(event, pygame.mouse.get_pos()):
-            print("Shop button clicked!")  # Debugging
+        # Render main button
+        mainButton.renderButton(screen)
 
-    # Render background
-    screen.blit(background, (0, 0))
+        # Render Shop Button
+        shopButton.renderButton(screen)
+    
+    # Render shop screen specific things
+    elif currentScreen == "shopScreen":
+        screen.fill(0, 0, 0)
 
-    # Render buttons
-    mainButton.renderButton(screen)
-    shopButton.renderButton(screen)
+    # Screen agnostic elements
 
     # Render cookie count
     cookieText = mainFont.render(f"Cookies: {cookies}", True, (255, 255, 255))
@@ -76,6 +93,6 @@ while isRunning:
     # Limit the frame rate
     clock.tick(60)  # Cap the frame rate at 60 FPS
 
-# Quit Pygame
+# Quit from running state
 pygame.quit()
 sys.exit()

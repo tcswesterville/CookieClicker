@@ -30,8 +30,8 @@ class Button():
         # Blit the scaled image to the screen
         screen.blit(self.backgroundImage, (self.x, self.y))
 
-    def onClicked(self, event, mousePosition):
-        # Check if the mouse position is within the button rectangle
-        if event.type == pygame.MOUSEBUTTONDOWN and self.buttonRect.collidepoint(mousePosition):
-            return True
-        return False
+    def onClicked(self, event, mousePosition: tuple[int, int]):
+            # Check if the mouse position is within the button rectangle
+            if event.type == pygame.MOUSEBUTTONDOWN and self.buttonRect.collidepoint(mousePosition):
+                return True
+            return False
