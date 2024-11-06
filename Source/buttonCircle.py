@@ -4,7 +4,6 @@ class ButtonCircle():
     def __init__(self, x: int, y: int, radius: int, backgroundImage: str):
         self.x = x
         self.y = y
-        self.radius = radius
         self.angle = 0  # Initialize an angle for rotation
 
         # Load the background image
@@ -14,9 +13,10 @@ class ButtonCircle():
         imgWidth, imgHeight = self.backgroundImage.get_size()
 
         # Calculate the scaling factor to fit within the circle
-        scaleFactor = (2 * self.radius) / imgWidth if imgWidth > imgHeight else (2 * self.radius) / imgHeight
+        scaleFactor = (2 * radius) / imgWidth if imgWidth > imgHeight else (2 * radius) / imgHeight
 
         # Scale the image while maintaining aspect ratio
+        self.radius = radius * scaleFactor
         newWidth = int(imgWidth * scaleFactor)
         newHeight = int(imgHeight * scaleFactor)
         self.backgroundImage = pygame.transform.scale(self.backgroundImage, (newWidth, newHeight))
@@ -47,6 +47,6 @@ class ButtonCircle():
 
     def onClicked(self, event, mousePosition):
         if event.type == pygame.MOUSEBUTTONDOWN:
-            if ((mousePosition[0] - self.x) ** 2 + (mousePosition[1] - self.y) ** 2) ** 0.5 <= self.radius:
+            if ((mousePosition[0] - self.x) ** 2 + (mousePosition[1] - self.y) ** 2) ** 0.58 <= self.radius:
                 return True
         return False

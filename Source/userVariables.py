@@ -4,3 +4,4 @@ score = 0
 
 # Screen tracking varaible
 currentScreen = "mainScreen"
+shopEnabled = False

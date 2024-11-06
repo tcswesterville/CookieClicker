@@ -47,20 +47,18 @@ while isRunning:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             isRunning = False
-        if currentScreen == "main":
+        if currentScreen == "mainScreen":
             if event.type == pygame.MOUSEBUTTONDOWN:
                 # Check for main button click
                 mousePosition = pygame.mouse.get_pos()
                 if mainButton.onClicked(event, mousePosition):
                     cookies += 1
                     score += 1
-                if shopButton.onClicked(event, mousePosition):
+                if (shopButton.onClicked(event, mousePosition)):
                     print("Shop Button Clicked:")
                     print(f"X: {mousePosition[0]}, Y: {mousePosition[1]}")
-                    currentScreen = "shopScreen"
-                    print("Switching to screen: shopScreen")
-        elif currentScreen == "shopScreen":
-            pass
+                    shopEnabled = not shopEnabled
+                    print("Enabling Shop") if shopEnabled == True else print("Disabling Shop")
 
     # Render main screen specific things
     if currentScreen == "mainScreen":
@@ -70,12 +68,14 @@ while isRunning:
         # Render main button
         mainButton.renderButton(screen)
 
+        # Shop specific items
+        if(shopEnabled == True):
+            shopWidth = screen_width // 3
+            shopHeight = screen_height // (3 / 4)
+            pygame.draw.rect(screen, BLACK, (screen_width - shopWidth, 0, shopWidth, shopHeight))
+        
         # Render Shop Button
         shopButton.renderButton(screen)
-    
-    # Render shop screen specific things
-    elif currentScreen == "shopScreen":
-        screen.fill(0, 0, 0)
 
     # Screen agnostic elements
 

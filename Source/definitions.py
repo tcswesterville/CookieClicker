@@ -16,3 +16,6 @@ shopButtonImage = "Assets/Images/shopButton.png"
 font.init()
 mainFontSize = 36
 mainFont = font.Font(None, mainFontSize)
+
+# Colors
+BLACK = (0, 0, 0)
