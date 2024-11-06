@@ -1,5 +1,6 @@
 import pygame
 import sys
+import math
 import buttonCircle
 import button
 from definitions import *
@@ -36,6 +37,14 @@ shopButton = button.Button(
     backgroundImage = shopButtonImage
 )
 
+cursorPurchaseButton = button.Button(
+    x=screen_width - shopWidth,
+    y=0,
+    width = shopWidth,
+    height = 50,
+    backgroundImage=cursorPurchaseButtonImage
+)
+
 # Set up clock for fixed frame rate
 clock = pygame.time.Clock()
 fixed_delta_time = 1 / 60  # Targeting 60 frames per second
@@ -52,13 +61,18 @@ while isRunning:
                 # Check for main button click
                 mousePosition = pygame.mouse.get_pos()
                 if mainButton.onClicked(event, mousePosition):
-                    cookies += 1
-                    score += 1
+                    cookies += cursorPower
+                    score += cursorPower
                 if (shopButton.onClicked(event, mousePosition)):
                     print("Shop Button Clicked:")
                     print(f"X: {mousePosition[0]}, Y: {mousePosition[1]}")
                     shopEnabled = not shopEnabled
                     print("Enabling Shop") if shopEnabled == True else print("Disabling Shop")
+                if(shopEnabled == True):
+                    if(cursorPurchaseButton.onClicked(event, mousePosition) and cookies >= cursorPrice):
+                        cookies -= cursorPrice
+                        cursorPower += 1
+                        cursorPrice = int(15 * (math.pow(1.25, cursorPower - 1)))
 
     # Render main screen specific things
     if currentScreen == "mainScreen":
@@ -70,9 +84,8 @@ while isRunning:
 
         # Shop specific items
         if(shopEnabled == True):
-            shopWidth = screen_width // 3
-            shopHeight = screen_height // (3 / 4)
             pygame.draw.rect(screen, BLACK, (screen_width - shopWidth, 0, shopWidth, shopHeight))
+            cursorPurchaseButton.renderButton(screen)
         
         # Render Shop Button
         shopButton.renderButton(screen)

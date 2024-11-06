@@ -4,6 +4,10 @@ from pygame import font
 screen_width = 800
 screen_height = 600
 
+# Shop dimensions
+shopWidth = screen_width // 3
+shopHeight = screen_height // (3 / 4)
+
 # Text
 APPLICATION_CAPTION = "Cookie Clicker"
 
@@ -11,6 +15,7 @@ APPLICATION_CAPTION = "Cookie Clicker"
 mainBackgroundImage = "Assets/Images/CookieClickerBackground01.webp"
 mainButtonImage = "Assets/Images/cookieButton.png"
 shopButtonImage = "Assets/Images/shopButton.png"
+cursorPurchaseButtonImage = "Assets/Images/Cursor.png"
 
 # Fonts
 font.init()
@@ -19,3 +24,6 @@ mainFont = font.Font(None, mainFontSize)
 
 # Colors
 BLACK = (0, 0, 0)
+
+# Shop Price
+cursorPrice = 15
