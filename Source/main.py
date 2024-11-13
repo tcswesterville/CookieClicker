@@ -42,7 +42,8 @@ cursorPurchaseButton = button.Button(
     y=0,
     width = shopWidth,
     height = 50,
-    backgroundImage=cursorPurchaseButtonImage
+    backgroundImage=cursorPurchaseButtonImage,
+    text=cursorPrice
 )
 
 # Set up clock for fixed frame rate
@@ -73,6 +74,7 @@ while isRunning:
                         cookies -= cursorPrice
                         cursorPower += 1
                         cursorPrice = int(15 * (math.pow(1.25, cursorPower - 1)))
+                        cursorPurchaseButton.resetText(cursorPrice)
 
     # Render main screen specific things
     if currentScreen == "mainScreen":
