@@ -46,13 +46,22 @@ cursorPurchaseButton = button.Button(
     text=cursorPrice
 )
 
+goldercursorPurchaseButton = button.Button(
+    x=screen_width - shopWidth,
+    y=cursorPurchaseButton.height,
+    width = shopWidth,
+    height = 50,
+    backgroundImage=goldenCursorPurchaseButtonImage,
+    text=goldenCursorPrice
+)
+
 # Set up clock for fixed frame rate
 clock = pygame.time.Clock()
 fixed_delta_time = 1 / 60  # Targeting 60 frames per second
 
 # Initialize game variables
 isRunning = True
-while isRunning:
+while isRunning:    
     # Handle events
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -73,8 +82,13 @@ while isRunning:
                     if(cursorPurchaseButton.onClicked(event, mousePosition) and cookies >= cursorPrice):
                         cookies -= cursorPrice
                         cursorPower += 1
-                        cursorPrice = int(15 * (math.pow(1.25, cursorPower - 1)))
+                        cursorPrice = int(cursorPrice * (math.pow(1.10, cursorPower - 1)))
                         cursorPurchaseButton.resetText(cursorPrice)
+                    elif(goldercursorPurchaseButton.onClicked(event, mousePosition) and cookies >= goldenCursorPrice):
+                        cookies -= goldenCursorPrice
+                        goldenCursors += 1
+                        goldenCursorPrice = int(goldenCursorPrice * (math.pow(1.10, goldenCursors)))
+                        goldercursorPurchaseButton.resetText(goldenCursorPrice)
 
     # Render main screen specific things
     if currentScreen == "mainScreen":
@@ -88,6 +102,7 @@ while isRunning:
         if(shopEnabled == True):
             pygame.draw.rect(screen, BLACK, (screen_width - shopWidth, 0, shopWidth, shopHeight))
             cursorPurchaseButton.renderButton(screen)
+            goldercursorPurchaseButton.renderButton(screen)
         
         # Render Shop Button
         shopButton.renderButton(screen)
@@ -104,6 +119,12 @@ while isRunning:
 
     # Update the display
     pygame.display.flip()
+
+    # Per second events
+    if (pygame.time.get_ticks() - lastEventTime >= 1000):
+        cookies += goldenCursors
+        score += goldenCursors
+        lastEventTime = pygame.time.get_ticks()
 
     # Limit the frame rate
     clock.tick(60)  # Cap the frame rate at 60 FPS

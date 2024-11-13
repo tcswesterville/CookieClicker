@@ -16,6 +16,7 @@ mainBackgroundImage = "Assets/Images/CookieClickerBackground01.webp"
 mainButtonImage = "Assets/Images/cookieButton.png"
 shopButtonImage = "Assets/Images/shopButton.png"
 cursorPurchaseButtonImage = "Assets/Images/Cursor.png"
+goldenCursorPurchaseButtonImage = "Assets/Images/goldencursor.png"
 
 # Fonts
 font.init()
@@ -27,3 +28,4 @@ BLACK = (0, 0, 0)
 
 # Shop Price
 cursorPrice = 15
+goldenCursorPrice = 100

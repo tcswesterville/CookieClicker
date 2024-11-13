@@ -8,3 +8,6 @@ shopEnabled = False
 
 # PowerUPs
 cursorPower = 1
+goldenCursors = 0
+
+lastEventTime = 0
