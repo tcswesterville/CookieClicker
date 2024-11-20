@@ -99,6 +99,7 @@ while isRunning:
         mainButton.renderButton(screen)
 
         # Shop specific items
+        
         if(shopEnabled == True):
             pygame.draw.rect(screen, BLACK, (screen_width - shopWidth, 0, shopWidth, shopHeight))
             cursorPurchaseButton.renderButton(screen)

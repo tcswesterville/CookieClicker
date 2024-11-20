@@ -2,7 +2,7 @@ import pygame
 from definitions import mainFont, mainFontSize
 
 class Button():
-    def __init__(self, x: int, y: int, width: int, height: int, backgroundImage: str, text=None):
+    def __init__(self, x: int, y: int, width: int, height: int, backgroundImage: str, text=""):
         self.x = x
         self.y = y
         self.text = mainFont.render(str(text), True, (255, 255, 255))
@@ -31,7 +31,8 @@ class Button():
     def renderButton(self, screen):
         # Blit the scaled image to the screen
         screen.blit(self.backgroundImage, (self.x, self.y))
-        screen.blit(self.text, (self.x + self.width, self.y + self.height // 2))
+        if self.text != "":
+            screen.blit(self.text, (self.x + self.width, self.y + self.height // 2))
         
         
 
