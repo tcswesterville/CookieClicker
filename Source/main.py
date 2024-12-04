@@ -63,6 +63,16 @@ farmPurchaseButton = button.Button(
     backgroundImage=farmPurchaseButtonImage,
     text=farmPrice
 )
+
+minePurchaseButton = button.Button(
+    x=screen_width - shopWidth,
+    y=farmPurchaseButton.height + farmPurchaseButton.y,
+    width = shopWidth,
+    height = 50,
+    backgroundImage=minePurchaseButtonImage,
+    text=minePrice
+)
+
 # Set up clock for fixed frame rate
 clock = pygame.time.Clock()
 fixed_delta_time = 1 / 60  # Targeting 60 frames per second
@@ -90,18 +100,24 @@ while isRunning:
                     if(cursorPurchaseButton.onClicked(event, mousePosition) and cookies >= cursorPrice):
                         cookies -= cursorPrice
                         cursorPower += 1
-                        cursorPrice = int(cursorPrice * (math.pow(1.10, cursorPower - 1)))
+                        cursorPrice = int(cursorPrice * 1.10)
                         cursorPurchaseButton.resetText(cursorPrice)
                     elif(goldercursorPurchaseButton.onClicked(event, mousePosition) and cookies >= goldenCursorPrice):
                         cookies -= goldenCursorPrice
                         goldenCursors += 1
-                        goldenCursorPrice = int(goldenCursorPrice * (math.pow(1.10, goldenCursors)))
+                        goldenCursorPrice = int(goldenCursorPrice * 1.10)
                         goldercursorPurchaseButton.resetText(goldenCursorPrice)
+                        goldenCursorPower = goldenCursors
                     elif(farmPurchaseButton.onClicked(event, mousePosition) and cookies >= farmPrice):
                         cookies -= farmPrice
                         farms += 1
-                        farmPrice = int(farmPrice * (math.pow(1.10, farms)))
+                        farmPrice = int(farmPrice * 1.10)
                         farmPurchaseButton.resetText(farmPrice)
+                    elif(minePurchaseButton.onClicked(event, mousePosition) and cookies >= minePrice):
+                        cookies -= minePrice
+                        mines += 1
+                        minePrice = int(minePrice * 1.10)
+                        minePurchaseButton.resetText(minePrice)
 
 
     # Render main screen specific things
@@ -119,6 +135,7 @@ while isRunning:
             cursorPurchaseButton.renderButton(screen)
             goldercursorPurchaseButton.renderButton(screen)
             farmPurchaseButton.renderButton(screen)
+            minePurchaseButton.renderButton(screen)
         # Render Shop Button
         shopButton.renderButton(screen)
 
@@ -137,8 +154,8 @@ while isRunning:
 
     # Per second events
     if (pygame.time.get_ticks() - lastEventTime >= 1000):
-        cookies += goldenCursors + farms * 10
-        score += goldenCursors + farms * 10
+        cookies += goldenCursorPower + farms * 10 + mines * 100
+        score += goldenCursorPower + farms * 10 + mines * 100
         lastEventTime = pygame.time.get_ticks()
 
     # Limit the frame rate

@@ -1,4 +1,5 @@
 from pygame import font
+from userVariables import *
 
 # Initial Screen dimensions
 screen_width = 800
@@ -18,6 +19,7 @@ shopButtonImage = "Assets/Images/shopButton.png"
 cursorPurchaseButtonImage = "Assets/Images/Cursor.png"
 goldenCursorPurchaseButtonImage = "Assets/Images/goldencursor.png"
 farmPurchaseButtonImage = "Assets/Images/farm.png"
+minePurchaseButtonImage = "Assets/Images/mine.png"
 
 # Fonts
 font.init()
@@ -31,3 +33,4 @@ BLACK = (0, 0, 0)
 cursorPrice = 15
 goldenCursorPrice = 100
 farmPrice = 1000
+minePrice = 10000
