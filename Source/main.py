@@ -5,6 +5,8 @@ import buttonCircle
 import button
 from definitions import *
 from userVariables import *
+import powerUp
+import schedule
 
 # Load and scale the mainBackground image
 mainBackground = pygame.image.load(mainBackgroundImage)
@@ -45,6 +47,7 @@ cursorPurchaseButton = button.Button(
     backgroundImage=cursorPurchaseButtonImage,
     text=cursorPrice
 )
+cursorPowerUp = powerUp.PowerUP(cursorPurchaseButton, 15, False, 1, 0)
 
 goldercursorPurchaseButton = button.Button(
     x=screen_width - shopWidth,
@@ -54,6 +57,7 @@ goldercursorPurchaseButton = button.Button(
     backgroundImage=goldenCursorPurchaseButtonImage,
     text=goldenCursorPrice
 )
+goldenCursorPowerUp = powerUp.PowerUP(goldercursorPurchaseButton, 100, True, 1, 1)
 
 farmPurchaseButton = button.Button(
     x=screen_width - shopWidth,
@@ -63,6 +67,7 @@ farmPurchaseButton = button.Button(
     backgroundImage=farmPurchaseButtonImage,
     text=farmPrice
 )
+farmPowerUp = powerUp.PowerUP(farmPurchaseButton, 1000, True, 10, 1)
 
 minePurchaseButton = button.Button(
     x=screen_width - shopWidth,
@@ -72,6 +77,7 @@ minePurchaseButton = button.Button(
     backgroundImage=minePurchaseButtonImage,
     text=minePrice
 )
+minePowerUp = powerUp.PowerUP(minePurchaseButton, 10000, True, 100, 1)
 
 # Set up clock for fixed frame rate
 clock = pygame.time.Clock()
@@ -97,28 +103,10 @@ while isRunning:
                     shopEnabled = not shopEnabled
                     print("Enabling Shop") if shopEnabled == True else print("Disabling Shop")
                 if(shopEnabled == True):
-                    if(cursorPurchaseButton.onClicked(event, mousePosition) and cookies >= cursorPrice):
-                        cookies -= cursorPrice
-                        cursorPower += 1
-                        cursorPrice = int(cursorPrice * 1.10)
-                        cursorPurchaseButton.resetText(cursorPrice)
-                    elif(goldercursorPurchaseButton.onClicked(event, mousePosition) and cookies >= goldenCursorPrice):
-                        cookies -= goldenCursorPrice
-                        goldenCursors += 1
-                        goldenCursorPrice = int(goldenCursorPrice * 1.10)
-                        goldercursorPurchaseButton.resetText(goldenCursorPrice)
-                        goldenCursorPower = goldenCursors
-                    elif(farmPurchaseButton.onClicked(event, mousePosition) and cookies >= farmPrice):
-                        cookies -= farmPrice
-                        farms += 1
-                        farmPrice = int(farmPrice * 1.10)
-                        farmPurchaseButton.resetText(farmPrice)
-                    elif(minePurchaseButton.onClicked(event, mousePosition) and cookies >= minePrice):
-                        cookies -= minePrice
-                        mines += 1
-                        minePrice = int(minePrice * 1.10)
-                        minePurchaseButton.resetText(minePrice)
-
+                    cursorPowerUp.purchase(event, mousePosition)
+                    goldenCursorPowerUp.purchase(event, mousePosition)
+                    farmPowerUp.purchase(event, mousePosition)
+                    minePowerUp.purchase(event, mousePosition)
 
     # Render main screen specific things
     if currentScreen == "mainScreen":
@@ -152,11 +140,8 @@ while isRunning:
     # Update the display
     pygame.display.flip()
 
-    # Per second events
-    if (pygame.time.get_ticks() - lastEventTime >= 1000):
-        cookies += goldenCursorPower + farms * 10 + mines * 100
-        score += goldenCursorPower + farms * 10 + mines * 100
-        lastEventTime = pygame.time.get_ticks()
+    # Scheduled events
+    schedule.run_pending()
 
     # Limit the frame rate
     clock.tick(60)  # Cap the frame rate at 60 FPS

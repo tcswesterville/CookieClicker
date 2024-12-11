@@ -1,8 +1,10 @@
 import pygame
 from definitions import mainFont, mainFontSize
+import userVariables
 
 class Button():
     def __init__(self, x: int, y: int, width: int, height: int, backgroundImage: str, text=""):
+        self.amount = 1
         self.x = x
         self.y = y
         self.text = mainFont.render(str(text), True, (255, 255, 255))
@@ -33,8 +35,6 @@ class Button():
         screen.blit(self.backgroundImage, (self.x, self.y))
         if self.text != "":
             screen.blit(self.text, (self.x + self.width, self.y + self.height // 2))
-        
-        
 
     def onClicked(self, event, mousePosition: tuple[int, int]):
             # Check if the mouse position is within the button rectangle
