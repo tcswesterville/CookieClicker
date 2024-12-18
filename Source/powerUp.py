@@ -16,15 +16,20 @@ class PowerUP():
     def setPrice(self):
         self.calculatePrice()
         self.button.resetText(self.cost)
+
     def purchase(self, event, mousePosition):
         if (self.button.onClicked(event, mousePosition)):
             if userVariables.cookies >= self.cost:
+                print(userVariables.cookies)
                 userVariables.cookies -= self.cost
                 self.amount += 1
                 self.setPrice()
     def effect(self):
-        userVariables.cookies += self.power
-        userVariables.score += self.power
+        userVariables.cookies += self.power * self.amount
+        userVariables.score += self.power * self.amount
+    def scheduledJob(self):
+        print("Running Job")
     def initiateTimedEvent(self, intervalSeconds: int):
         if (self.hasTimedEvent):
             schedule.every(intervalSeconds).seconds.do(self.effect)
+            #schedule.every(intervalSeconds).seconds.do(self.scheduledJob)

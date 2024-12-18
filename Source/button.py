@@ -1,6 +1,5 @@
 import pygame
-from definitions import mainFont, mainFontSize
-import userVariables
+from definitions import mainFont
 
 class Button():
     def __init__(self, x: int, y: int, width: int, height: int, backgroundImage: str, text=""):

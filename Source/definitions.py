@@ -1,5 +1,4 @@
 from pygame import font
-from userVariables import *
 
 # Initial Screen dimensions
 screen_width = 800

@@ -4,7 +4,7 @@ import math
 import buttonCircle
 import button
 from definitions import *
-from userVariables import *
+import userVariables
 import powerUp
 import schedule
 
@@ -95,14 +95,14 @@ while isRunning:
                 # Check for main button click
                 mousePosition = pygame.mouse.get_pos()
                 if mainButton.onClicked(event, mousePosition):
-                    cookies += cursorPower
-                    score += cursorPower
+                    userVariables.cookies += userVariables.cursorPower
+                    userVariables.score += userVariables.cursorPower
                 if (shopButton.onClicked(event, mousePosition)):
                     print("Shop Button Clicked:")
                     print(f"X: {mousePosition[0]}, Y: {mousePosition[1]}")
-                    shopEnabled = not shopEnabled
-                    print("Enabling Shop") if shopEnabled == True else print("Disabling Shop")
-                if(shopEnabled == True):
+                    userVariables.shopEnabled = not userVariables.shopEnabled
+                    print("Enabling Shop") if userVariables.shopEnabled == True else print("Disabling Shop")
+                if(userVariables.shopEnabled == True):
                     cursorPowerUp.purchase(event, mousePosition)
                     goldenCursorPowerUp.purchase(event, mousePosition)
                     farmPowerUp.purchase(event, mousePosition)
@@ -118,7 +118,7 @@ while isRunning:
 
         # Shop specific items
         
-        if(shopEnabled == True):
+        if(userVariables.shopEnabled == True):
             pygame.draw.rect(screen, BLACK, (screen_width - shopWidth, 0, shopWidth, shopHeight))
             cursorPurchaseButton.renderButton(screen)
             goldercursorPurchaseButton.renderButton(screen)
@@ -130,11 +130,11 @@ while isRunning:
     # Screen agnostic elements
 
     # Render cookie count
-    cookieText = mainFont.render(f"Cookies: {cookies}", True, (255, 255, 255))
+    cookieText = mainFont.render(f"Cookies: {userVariables.cookies}", True, (255, 255, 255))
     screen.blit(cookieText, (10, 10))
 
     # Render score
-    scoreText = mainFont.render(f"Score: {score}", True, (255, 255, 255))
+    scoreText = mainFont.render(f"Score: {userVariables.score}", True, (255, 255, 255))
     screen.blit(scoreText, (10, 10 + mainFontSize))
 
     # Update the display
