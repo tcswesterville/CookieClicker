@@ -12,12 +12,12 @@ class PowerUP():
         self.initiateTimedEvent(intervalSeconds)
     def calculatePrice(self):
         self.cost *= 1.10
+        self.cost = int(self.cost)
     def setPrice(self):
-        self.cost = self.calculatePrice()
+        self.calculatePrice()
         self.button.resetText(self.cost)
     def purchase(self, event, mousePosition):
         if (self.button.onClicked(event, mousePosition)):
-            print("hello ")
             if userVariables.cookies >= self.cost:
                 userVariables.cookies -= self.cost
                 self.amount += 1
