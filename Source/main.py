@@ -79,6 +79,16 @@ minePurchaseButton = button.Button(
 )
 minePowerUp = powerUp.PowerUP(minePurchaseButton, 10000, True, 100, 1)
 
+facotryPurchaseButton = button.Button(
+    x=screen_width - shopWidth,
+    y=minePurchaseButton.height + minePurchaseButton.y,
+    width = shopWidth,
+    height = 50,
+    backgroundImage=factoryPurchaseButtonImage,
+    text=factoryPrice
+)
+factoryPowerUp = powerUp.PowerUP(facotryPurchaseButton, 100000, True, 1000, 1)
+
 # Set up clock for fixed frame rate
 clock = pygame.time.Clock()
 fixed_delta_time = 1 / 60  # Targeting 60 frames per second
@@ -107,6 +117,7 @@ while isRunning:
                     goldenCursorPowerUp.purchase(event, mousePosition)
                     farmPowerUp.purchase(event, mousePosition)
                     minePowerUp.purchase(event, mousePosition)
+                    factoryPowerUp.purchase(event, mousePosition)
 
     # Render main screen specific things
     if currentScreen == "mainScreen":
@@ -124,6 +135,7 @@ while isRunning:
             goldercursorPurchaseButton.renderButton(screen)
             farmPurchaseButton.renderButton(screen)
             minePurchaseButton.renderButton(screen)
+            facotryPurchaseButton.renderButton(screen)
         # Render Shop Button
         shopButton.renderButton(screen)
 
