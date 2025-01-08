@@ -20,6 +20,7 @@ goldenCursorPurchaseButtonImage = "Assets/Images/goldencursor.png"
 farmPurchaseButtonImage = "Assets/Images/farm.png"
 minePurchaseButtonImage = "Assets/Images/mine.png"
 factoryPurchaseButtonImage = "Assets/Images/factory.png"
+bankPurchaseButtonImage = "Assets/Images/Bank.png"
 
 # Fonts
 font.init()
@@ -35,3 +36,4 @@ goldenCursorPrice = 100
 farmPrice = 1000
 minePrice = 10000
 factoryPrice = 100000
+bankPrice = 1000000

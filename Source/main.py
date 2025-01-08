@@ -39,55 +39,68 @@ shopButton = button.Button(
     backgroundImage = shopButtonImage
 )
 
-cursorPurchaseButton = button.Button(
+shopButtons = []
+powerUps = []
+
+shopButtons.append(button.Button(
     x=screen_width - shopWidth,
     y=0,
     width = shopWidth,
     height = 50,
     backgroundImage=cursorPurchaseButtonImage,
     text=cursorPrice
-)
-cursorPowerUp = powerUp.PowerUP(cursorPurchaseButton, 15, False, 1, 0)
+))
+powerUps.append(powerUp.PowerUP(shopButtons[0], 15, False, 1, 0))
 
-goldercursorPurchaseButton = button.Button(
+shopButtons.append(button.Button(
     x=screen_width - shopWidth,
-    y=cursorPurchaseButton.height,
+    y=shopButtons[0].height,
     width = shopWidth,
     height = 50,
     backgroundImage=goldenCursorPurchaseButtonImage,
     text=goldenCursorPrice
-)
-goldenCursorPowerUp = powerUp.PowerUP(goldercursorPurchaseButton, 100, True, 1, 1)
+))
+powerUps.append(powerUp.PowerUP(shopButtons[1], 100, True, 1, 1))
 
-farmPurchaseButton = button.Button(
+shopButtons.append(button.Button(
     x=screen_width - shopWidth,
-    y=goldercursorPurchaseButton.height + goldercursorPurchaseButton.y,
+    y=shopButtons[1].height + shopButtons[1].y,
     width = shopWidth,
     height = 50,
     backgroundImage=farmPurchaseButtonImage,
     text=farmPrice
-)
-farmPowerUp = powerUp.PowerUP(farmPurchaseButton, 1000, True, 10, 1)
+))
+powerUps.append(powerUp.PowerUP(shopButtons[2], 1000, True, 10, 1))
 
-minePurchaseButton = button.Button(
+shopButtons.append(button.Button(
     x=screen_width - shopWidth,
-    y=farmPurchaseButton.height + farmPurchaseButton.y,
+    y=shopButtons[2].height + shopButtons[2].y,
     width = shopWidth,
     height = 50,
     backgroundImage=minePurchaseButtonImage,
     text=minePrice
-)
-minePowerUp = powerUp.PowerUP(minePurchaseButton, 10000, True, 100, 1)
+))
+powerUps.append(powerUp.PowerUP(shopButtons[3], 10000, True, 100, 1))
 
-facotryPurchaseButton = button.Button(
+shopButtons.append(button.Button(
     x=screen_width - shopWidth,
-    y=minePurchaseButton.height + minePurchaseButton.y,
+    y=shopButtons[3].height + shopButtons[3].y,
     width = shopWidth,
     height = 50,
     backgroundImage=factoryPurchaseButtonImage,
     text=factoryPrice
-)
-factoryPowerUp = powerUp.PowerUP(facotryPurchaseButton, 100000, True, 1000, 1)
+))
+powerUps.append(powerUp.PowerUP(shopButtons[4], 100000, True, 1000, 1))
+
+shopButtons.append(button.Button(
+    x=screen_width - shopWidth,
+    y=shopButtons[4].height + shopButtons[4].y,
+    width=shopWidth,
+    height=50,
+    backgroundImage=bankPurchaseButtonImage,
+    text=bankPrice
+))
+powerUps.append(powerUp.PowerUP(shopButtons[5], 1000000, True, 10000, 1))
 
 # Set up clock for fixed frame rate
 clock = pygame.time.Clock()
@@ -113,11 +126,8 @@ while isRunning:
                     userVariables.shopEnabled = not userVariables.shopEnabled
                     print("Enabling Shop") if userVariables.shopEnabled == True else print("Disabling Shop")
                 if(userVariables.shopEnabled == True):
-                    cursorPowerUp.purchase(event, mousePosition)
-                    goldenCursorPowerUp.purchase(event, mousePosition)
-                    farmPowerUp.purchase(event, mousePosition)
-                    minePowerUp.purchase(event, mousePosition)
-                    factoryPowerUp.purchase(event, mousePosition)
+                    for powerup in powerUps:
+                        powerup.purchase(event, mousePosition)
 
     # Render main screen specific things
     if currentScreen == "mainScreen":
@@ -131,11 +141,8 @@ while isRunning:
         
         if(userVariables.shopEnabled == True):
             pygame.draw.rect(screen, BLACK, (screen_width - shopWidth, 0, shopWidth, shopHeight))
-            cursorPurchaseButton.renderButton(screen)
-            goldercursorPurchaseButton.renderButton(screen)
-            farmPurchaseButton.renderButton(screen)
-            minePurchaseButton.renderButton(screen)
-            facotryPurchaseButton.renderButton(screen)
+            for button in shopButtons:
+                button.renderButton(screen)
         # Render Shop Button
         shopButton.renderButton(screen)
 
