@@ -51,7 +51,7 @@ shopButtons.append(button.Button(
     backgroundImage=cursorPurchaseButtonImage,
     text=cursorPrice
 ))
-powerUps.append(powerUp.PowerUP(shopButtons[0], 15, False, 1, 0))
+powerUps.append(powerUp.PowerUP(shopButtons[0], 15, False, 1, 1, 0))
 
 shopButtons.append(button.Button(
     x=screen_width - shopWidth,
@@ -61,7 +61,7 @@ shopButtons.append(button.Button(
     backgroundImage=goldenCursorPurchaseButtonImage,
     text=goldenCursorPrice
 ))
-powerUps.append(powerUp.PowerUP(shopButtons[1], 100, True, 1, 1))
+powerUps.append(powerUp.PowerUP(shopButtons[1], 100, True))
 
 shopButtons.append(button.Button(
     x=screen_width - shopWidth,
@@ -71,7 +71,7 @@ shopButtons.append(button.Button(
     backgroundImage=farmPurchaseButtonImage,
     text=farmPrice
 ))
-powerUps.append(powerUp.PowerUP(shopButtons[2], 1000, True, 10, 1))
+powerUps.append(powerUp.PowerUP(shopButtons[2], 1000, True, 10))
 
 shopButtons.append(button.Button(
     x=screen_width - shopWidth,
@@ -81,7 +81,7 @@ shopButtons.append(button.Button(
     backgroundImage=minePurchaseButtonImage,
     text=minePrice
 ))
-powerUps.append(powerUp.PowerUP(shopButtons[3], 10000, True, 100, 1))
+powerUps.append(powerUp.PowerUP(shopButtons[3], 10000, True, 100))
 
 shopButtons.append(button.Button(
     x=screen_width - shopWidth,
@@ -91,7 +91,7 @@ shopButtons.append(button.Button(
     backgroundImage=factoryPurchaseButtonImage,
     text=factoryPrice
 ))
-powerUps.append(powerUp.PowerUP(shopButtons[4], 100000, True, 1000, 1))
+powerUps.append(powerUp.PowerUP(shopButtons[4], 100000, True, 1000))
 
 shopButtons.append(button.Button(
     x=screen_width - shopWidth,
@@ -101,7 +101,7 @@ shopButtons.append(button.Button(
     backgroundImage=bankPurchaseButtonImage,
     text=bankPrice
 ))
-powerUps.append(powerUp.PowerUP(shopButtons[5], 1000000, True, 10000, 1))
+powerUps.append(powerUp.PowerUP(shopButtons[5], 1000000, True, 10000))
 
 # Set up clock for fixed frame rate
 clock = pygame.time.Clock()
@@ -119,8 +119,8 @@ while isRunning:
                 # Check for main button click
                 mousePosition = pygame.mouse.get_pos()
                 if mainButton.onClicked(event, mousePosition):
-                    userVariables.cookies += userVariables.cursorPower
-                    userVariables.score += userVariables.cursorPower
+                    userVariables.cookies += powerUps[0].power
+                    userVariables.score += powerUps[0].power
                 if (shopButton.onClicked(event, mousePosition)):
                     print("Shop Button Clicked:")
                     print(f"X: {mousePosition[0]}, Y: {mousePosition[1]}")

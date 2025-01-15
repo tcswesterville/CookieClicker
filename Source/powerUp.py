@@ -3,11 +3,11 @@ import userVariables
 import schedule
 
 class PowerUP():
-    def __init__(self, button: Button, initialCost: int, timedEvent: bool, power: int, intervalSeconds: int):
+    def __init__(self, button: Button, initialCost: int, timedEvent: bool, powerIncrement = 1, power = 0, intervalSeconds = 1):
         self.button = button
-        self.amount = 0
         self.cost = initialCost
         self.hasTimedEvent = timedEvent
+        self.powerIncrement = powerIncrement
         self.power = power
         self.initiateTimedEvent(intervalSeconds)
     def calculatePrice(self):
@@ -22,11 +22,11 @@ class PowerUP():
             if userVariables.cookies >= self.cost:
                 print(userVariables.cookies)
                 userVariables.cookies -= self.cost
-                self.amount += 1
+                self.power += self.powerIncrement
                 self.setPrice()
     def effect(self):
-        userVariables.cookies += self.power * self.amount
-        userVariables.score += self.power * self.amount
+        userVariables.cookies += self.power
+        userVariables.score += self.power
     def scheduledJob(self):
         print("Running Job")
     def initiateTimedEvent(self, intervalSeconds: int):
