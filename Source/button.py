@@ -1,4 +1,5 @@
 import pygame
+import helperFunctions
 from definitions import mainFont
 
 class Button():
@@ -6,7 +7,8 @@ class Button():
         self.amount = 1
         self.x = x
         self.y = y
-        self.text = mainFont.render(str(text), True, (255, 255, 255))
+        self.text = text
+        self.resetText(text)
         
         # Load the background image and handle exceptions
         try:
@@ -42,4 +44,7 @@ class Button():
             return False
     
     def resetText(self, text: str):
-        self.text = mainFont.render(str(text), True, (255, 255, 255))
+        if self.text == "":
+            self.text = mainFont.render(str(text), True, (255, 255, 255))
+        else:
+            self.text = mainFont.render(helperFunctions.simplifyNumber(text), True, (255, 255, 255))

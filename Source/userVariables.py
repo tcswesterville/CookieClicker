@@ -1,5 +1,5 @@
 # Score tracking variables
-cookies = 100000000
+cookies = 1000000
 score = 0
 
 # Screen tracking varaible

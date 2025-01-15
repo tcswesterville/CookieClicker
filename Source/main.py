@@ -6,6 +6,7 @@ import button
 from definitions import *
 import userVariables
 import powerUp
+import helperFunctions
 import schedule
 
 # Load and scale the mainBackground image
@@ -149,11 +150,11 @@ while isRunning:
     # Screen agnostic elements
 
     # Render cookie count
-    cookieText = mainFont.render(f"Cookies: {userVariables.cookies}", True, (255, 255, 255))
+    cookieText = mainFont.render(f"Cookies: {helperFunctions.simplifyNumber(userVariables.cookies)}", True, (255, 255, 255))
     screen.blit(cookieText, (10, 10))
 
     # Render score
-    scoreText = mainFont.render(f"Score: {userVariables.score}", True, (255, 255, 255))
+    scoreText = mainFont.render(f"Score: {helperFunctions.simplifyNumber(userVariables.score)}", True, (255, 255, 255))
     screen.blit(scoreText, (10, 10 + mainFontSize))
 
     # Update the display
