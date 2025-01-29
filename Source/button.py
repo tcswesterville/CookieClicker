@@ -1,15 +1,17 @@
 import pygame
 import helperFunctions
+import numpy as np
 from definitions import mainFont
 
 class Button():
-    def __init__(self, x: int, y: int, width: int, height: int, backgroundImage: str, text=""):
+    def __init__(self, x: int, y: int, width: int, height: int, backgroundImage: str, text="", unlocked=True):
         self.amount = 1
         self.x = x
         self.y = y
         self.text = text
         self.resetText(text)
-        
+        self.unlocked = unlocked
+
         # Load the background image and handle exceptions
         try:
             self.backgroundImage = pygame.image.load(backgroundImage).convert_alpha()
@@ -26,14 +28,23 @@ class Button():
         # Scale the image while maintaining aspect ratio
         self.width = int(imgWidth * scaleFactor)
         self.height = int(imgHeight * scaleFactor)
-        self.backgroundImage = pygame.transform.scale(self.backgroundImage, (self.width, self.height))
+        self.originalBackgroundImage = pygame.transform.scale(self.backgroundImage, (self.width, self.height))
+        
+        imageArray = pygame.surfarray.array3d(self.originalBackgroundImage)
+        meanRGBValues = np.mean(imageArray, axis = 2)
+        meanArray = meanRGBValues[..., np.newaxis]
+        meanArray = np.repeat(meanArray[:, :, :], 3, axis=2)
+        self.backgroundImage = pygame.surfarray.make_surface(meanArray)
 
         # Define button rectangle for click detection
         self.buttonRect = pygame.Rect(self.x, self.y, self.width, self.height)
 
     def renderButton(self, screen):
         # Blit the scaled image to the screen
-        screen.blit(self.backgroundImage, (self.x, self.y))
+        if self.unlocked:
+            screen.blit(self.originalBackgroundImage, (self.x, self.y))
+        else:
+            screen.blit(self.backgroundImage, (self.x, self.y))
         if self.text != "":
             screen.blit(self.text, (self.x + self.width, self.y + self.height // 2))
 

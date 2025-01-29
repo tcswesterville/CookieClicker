@@ -2,6 +2,9 @@
 cookies = 10000000
 score = 0
 
+shopButtons = []
+powerUps = []
+
 # Screen tracking varaible
 currentScreen = "mainScreen"
 shopEnabled = False
