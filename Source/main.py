@@ -92,7 +92,7 @@ userVariables.shopButtons.append(button.Button(
     text=factoryPrice,
     unlocked=False
 ))
-userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[4], 100000, True, 1000, 0, 1, 5))
+userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[4], 100000, True, 500, 0, 1, 5))
 
 userVariables.shopButtons.append(button.Button(
     x=screen_width - shopWidth,
@@ -103,7 +103,7 @@ userVariables.shopButtons.append(button.Button(
     text=bankPrice,
     unlocked=False
 ))
-userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[5], 1000000, True, 10000, 0, 1, 6))
+userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[5], 1000000, True, 7500, 0, 1, 6))
 
 userVariables.shopButtons.append(button.Button(
     x=screen_width - shopWidth,
@@ -125,7 +125,23 @@ userVariables.shopButtons.append(button.Button(
     text=templePrice,
     unlocked=False
 ))
-userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[7], templePrice, True, 100000, 0))
+
+userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[7], templePrice, True, 90000, 0, 1, 8))
+
+
+userVariables.shopButtons.append(button.Button(
+    x=screen_width - shopWidth,
+    y=userVariables.shopButtons[7].height + userVariables.shopButtons[7].y,
+    width=shopWidth,
+    height=50,
+    backgroundImage=wizardTowerPurchaseButtonImage,
+    text=wizardtowerPrice,
+    unlocked=False
+))
+
+userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[8], wizardtowerPrice, True, 200000, 0))
+
+
 # Set up clock for fixed frame rate
 clock = pygame.time.Clock()
 fixed_delta_time = 1 / 60  # Targeting 60 frames per second

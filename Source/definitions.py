@@ -23,6 +23,7 @@ factoryPurchaseButtonImage = "Assets/Images/factory.png"
 bankPurchaseButtonImage = "Assets/Images/Bank.png"
 cursor2PurchaceButtonImage = "Assets/Images/Cursor2.png"
 templePurchaseButtonImage = "Assets/Images/temple.png"
+wizardTowerPurchaseButtonImage = "Assets/Images/wizardTower.png"
 
 # Fonts
 font.init()
@@ -41,3 +42,4 @@ factoryPrice = 100000
 bankPrice = 1000000
 cursor2Price = 1000000
 templePrice = 20000000
+wizardtowerPrice = 300000000
