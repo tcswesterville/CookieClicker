@@ -50,16 +50,6 @@ userVariables.shopButtons.append(button.Button(
 ))
 userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[0], 15, False, 1, 1, 0, 1))
 
-userVariables.shopButtons.append(button.Button(
-    x=screen_width - shopWidth,
-    y=userVariables.shopButtons[0].height,
-    width = shopWidth,
-    height = 50,
-    backgroundImage=goldenCursorPurchaseButtonImage,
-    text=goldenCursorPrice,
-    unlocked=False
-))
-userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[1], 100, True, 1, 0, 1, 2))
 
 userVariables.shopButtons.append(button.Button(
     x=screen_width - shopWidth,
@@ -105,16 +95,6 @@ userVariables.shopButtons.append(button.Button(
 ))
 userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[5], 1000000, True, 7500, 0, 1, 6))
 
-userVariables.shopButtons.append(button.Button(
-    x=screen_width - shopWidth,
-    y=userVariables.shopButtons[5].height + userVariables.shopButtons[5].y,
-    width=shopWidth,
-    height=50,
-    backgroundImage=cursor2PurchaceButtonImage,
-    text=cursor2Price,
-    unlocked=False
-))
-userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[6], cursor2Price, False, 2000, 0, 0, 7))
 
 userVariables.shopButtons.append(button.Button(
     x=screen_width - shopWidth,
