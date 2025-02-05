@@ -114,7 +114,18 @@ userVariables.shopButtons.append(button.Button(
     text=cursor2Price,
     unlocked=False
 ))
-userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[6], cursor2Price, False, 2000, 0, 0))
+userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[6], cursor2Price, False, 2000, 0, 0, 7))
+
+userVariables.shopButtons.append(button.Button(
+    x=screen_width - shopWidth,
+    y=userVariables.shopButtons[6].height + userVariables.shopButtons[6].y,
+    width=shopWidth,
+    height=50,
+    backgroundImage=templePurchaseButtonImage,
+    text=templePrice,
+    unlocked=False
+))
+userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[7], templePrice, True, 100000, 0))
 # Set up clock for fixed frame rate
 clock = pygame.time.Clock()
 fixed_delta_time = 1 / 60  # Targeting 60 frames per second

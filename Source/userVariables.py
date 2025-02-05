@@ -1,5 +1,5 @@
 # Score tracking variables
-cookies = 10000000
+cookies = 10000000000
 score = 0
 
 shopButtons = []
