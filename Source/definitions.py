@@ -15,7 +15,9 @@ APPLICATION_CAPTION = "Cookie Clicker"
 mainBackgroundImage = "Assets/Images/CookieClickerBackground01.webp"
 mainButtonImage = "Assets/Images/cookieButton.png"
 shopButtonImage = "Assets/Images/shopButton.png"
+upgradeShopButtonImage = "Assets/Images/upgradeShopButton"
 cursorPurchaseButtonImage = "Assets/Images/Cursor.png"
+grandmaPurchaseButtonImage = "Assets/Images/grandma.png"
 farmPurchaseButtonImage = "Assets/Images/farm.png"
 minePurchaseButtonImage = "Assets/Images/mine.png"
 factoryPurchaseButtonImage = "Assets/Images/factory.png"
@@ -33,9 +35,10 @@ BLACK = (0, 0, 0)
 
 # Shop Price
 cursorPrice = 15
-farmPrice = 1000
-minePrice = 10000
-factoryPrice = 100000
-bankPrice = 1000000
+grandmaPrice = 100
+farmPrice = 1100
+minePrice = 12000
+factoryPrice = 130000
+bankPrice = 1400000
 templePrice = 20000000
-wizardtowerPrice = 300000000
+wizardtowerPrice = 330000000
