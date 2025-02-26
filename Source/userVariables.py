@@ -8,6 +8,7 @@ powerUps = []
 # Screen tracking varaible
 currentScreen = "mainScreen"
 shopEnabled = False
+upgradeshopEnabled = False
 
 lastEventTime = 0
 

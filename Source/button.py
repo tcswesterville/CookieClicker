@@ -23,6 +23,7 @@ class Button():
         imgWidth, imgHeight = self.backgroundImage.get_size()
 
         # Calculate the scaling factor
+        
         scaleFactor = min(width / imgWidth, height / imgHeight)
 
         # Scale the image while maintaining aspect ratio

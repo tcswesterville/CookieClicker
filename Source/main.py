@@ -42,9 +42,9 @@ shopButton = button.Button(
 
 upgradeShopButton = button.Button(
     x=0,
-    y=screen_height - ((screen_height // 8) / 2) - int(screen_height  * (1 / 36)),
-    width = screen_width // 8,
-    height = screen_height // 8,
+    y=screen_height - ((screen_height // 5) / 2) - int(screen_height  * (1 / 25)),
+    width = screen_width // 5,
+    height = screen_height // 5,
     backgroundImage = upgradeShopButtonImage
 )
 
@@ -159,10 +159,9 @@ while isRunning:
                     userVariables.cookies += userVariables.powerUps[0].power
                     userVariables.score += userVariables.powerUps[0].power
                 if (shopButton.onClicked(event, mousePosition)):
-                    print("Shop Button Clicked:")
-                    print(f"X: {mousePosition[0]}, Y: {mousePosition[1]}")
                     userVariables.shopEnabled = not userVariables.shopEnabled
-                    print("Enabling Shop") if userVariables.shopEnabled == True else print("Disabling Shop")
+                if (upgradeShopButton.onClicked(event, mousePosition)):
+                    userVariables.upgradeshopEnabled = not userVariables.upgradeshopEnabled
                 if(userVariables.shopEnabled == True):
                     for powerup in userVariables.powerUps:
                         powerup.purchase(event, mousePosition)
@@ -181,18 +180,23 @@ while isRunning:
             pygame.draw.rect(screen, BLACK, (screen_width - shopWidth, 0, shopWidth, shopHeight))
             for button in userVariables.shopButtons:
                 button.renderButton(screen)
+        if(userVariables.upgradeshopEnabled == True):
+            pygame.draw.rect(screen, BLACK, (0, 0, shopWidth, shopHeight))
         # Render Shop Button
         shopButton.renderButton(screen)
+        upgradeShopButton.renderButton(screen)
 
     # Screen agnostic elements
 
     # Render cookie count
     cookieText = mainFont.render(f"Cookies: {helperFunctions.simplifyNumber(userVariables.cookies)}", True, (255, 255, 255))
-    screen.blit(cookieText, (10, 10))
+    cookieTextRectangle = cookieText.get_rect(center=(screen_width // 2, 15))
+    screen.blit(cookieText, cookieTextRectangle)
 
     # Render score
     scoreText = mainFont.render(f"Score: {helperFunctions.simplifyNumber(userVariables.score)}", True, (255, 255, 255))
-    screen.blit(scoreText, (10, 10 + mainFontSize))
+    scoreTextRectangle = scoreText.get_rect(center=(screen_width // 2, 10 + mainFontSize))
+    screen.blit(scoreText, (scoreTextRectangle))
 
     # Update the display
     pygame.display.flip()
