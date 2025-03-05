@@ -8,37 +8,13 @@ class Button():
         self.amount = 1
         self.x = x
         self.y = y
+        self.originalWidth = width
+        self.originalHeight = height
         self.text = text
         self.resetText(text)
         self.unlocked = unlocked
 
-        # Load the background image and handle exceptions
-        try:
-            self.backgroundImage = pygame.image.load(backgroundImage).convert_alpha()
-        except pygame.error as e:
-            print(f"Failed to load image: {backgroundImage}")
-            raise e
-
-        # Get original dimensions
-        imgWidth, imgHeight = self.backgroundImage.get_size()
-
-        # Calculate the scaling factor
-        
-        scaleFactor = min(width / imgWidth, height / imgHeight)
-
-        # Scale the image while maintaining aspect ratio
-        self.width = int(imgWidth * scaleFactor)
-        self.height = int(imgHeight * scaleFactor)
-        self.originalBackgroundImage = pygame.transform.scale(self.backgroundImage, (self.width, self.height))
-        
-        imageArray = pygame.surfarray.array3d(self.originalBackgroundImage)
-        meanRGBValues = np.mean(imageArray, axis = 2)
-        meanArray = meanRGBValues[..., np.newaxis]
-        meanArray = np.repeat(meanArray[:, :, :], 3, axis=2)
-        self.backgroundImage = pygame.surfarray.make_surface(meanArray)
-
-        # Define button rectangle for click detection
-        self.buttonRect = pygame.Rect(self.x, self.y, self.width, self.height)
+        self.changeBackground(backgroundImage)
 
     def renderButton(self, screen):
         # Blit the scaled image to the screen
@@ -60,3 +36,32 @@ class Button():
             self.text = mainFont.render(str(text), True, (255, 255, 255))
         else:
             self.text = mainFont.render(helperFunctions.simplifyNumber(text), True, (255, 255, 255))
+
+    def changeBackground(self, backgroundImage: str):
+        # Load the background image and handle exceptions
+        try:
+            self.backgroundImage = pygame.image.load(backgroundImage).convert_alpha()
+        except pygame.error as e:
+            print(f"Failed to load image: {backgroundImage}")
+            raise e
+
+        # Get original dimensions
+        imgWidth, imgHeight = self.backgroundImage.get_size()
+
+        # Calculate the scaling factor
+        
+        scaleFactor = min(self.originalWidth / imgWidth, self.originalHeight / imgHeight)
+
+        # Scale the image while maintaining aspect ratio
+        self.width = int(imgWidth * scaleFactor)
+        self.height = int(imgHeight * scaleFactor)
+        self.originalBackgroundImage = pygame.transform.scale(self.backgroundImage, (self.width, self.height))
+        
+        imageArray = pygame.surfarray.array3d(self.originalBackgroundImage)
+        meanRGBValues = np.mean(imageArray, axis = 2)
+        meanArray = meanRGBValues[..., np.newaxis]
+        meanArray = np.repeat(meanArray[:, :, :], 3, axis=2)
+        self.backgroundImage = pygame.surfarray.make_surface(meanArray)
+
+        # Define button rectangle for click detection
+        self.buttonRect = pygame.Rect(self.x, self.y, self.width, self.height)

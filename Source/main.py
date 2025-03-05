@@ -6,6 +6,7 @@ import button
 from definitions import *
 import userVariables
 import powerUp
+import upgrade
 import helperFunctions
 import schedule
 
@@ -57,6 +58,8 @@ userVariables.shopButtons.append(button.Button(
     text=cursorPrice
 ))
 userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[0], 15, False, 0.1, 1, 0, 1))
+
+upgrade1 = upgrade.UpgradeLine(0, CLICKERUPGRADEPATH, userVariables.powerUps[0], CLICKERUPGRADES)
 
 userVariables.shopButtons.append(button.Button(
     x=screen_width - shopWidth,
@@ -165,6 +168,8 @@ while isRunning:
                 if(userVariables.shopEnabled == True):
                     for powerup in userVariables.powerUps:
                         powerup.purchase(event, mousePosition)
+                if(userVariables.upgradeshopEnabled == True):
+                    upgrade1.purchase(event, mousePosition)
 
     # Render main screen specific things
     if currentScreen == "mainScreen":
@@ -182,6 +187,7 @@ while isRunning:
                 button.renderButton(screen)
         if(userVariables.upgradeshopEnabled == True):
             pygame.draw.rect(screen, BLACK, (0, 0, shopWidth, shopHeight))
+            upgrade1.update(screen)
         # Render Shop Button
         shopButton.renderButton(screen)
         upgradeShopButton.renderButton(screen)
@@ -190,7 +196,7 @@ while isRunning:
 
     # Render cookie count
     cookieText = mainFont.render(f"Cookies: {helperFunctions.simplifyNumber(userVariables.cookies)}", True, (255, 255, 255))
-    cookieTextRectangle = cookieText.get_rect(center=(screen_width // 2, 15))
+    cookieTextRectangle = cookieText.get_rect(center=(screen_width // 2, 154))
     screen.blit(cookieText, cookieTextRectangle)
 
     # Render score

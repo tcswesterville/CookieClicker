@@ -27,26 +27,27 @@ wizardTowerPurchaseButtonImage = "Assets/Images/wizardTower.png"
 
 UPGRADESPATH = "Assets/Images/Upgrades/"
 CLICKERUPGRADEPATH = UPGRADESPATH + "Clicker/"
-CLICKERUPGRADES = {(CLICKERUPGRADEPATH + "reinforcedindexfinger.png", 10000000000000000)}
 
 # Upgrades (relative path, price, adder, multiplier, addition per unit, multiplier per unit, unit is me, unlock condition)
-CLICKERUPGRADES = {
+CLICKERUPGRADES = [
     ("reinforcedindexfinger.png", 100, 0, 2, 0, 1, False, 1),
-    ("carpaltunnel.png", 500, 0, 2, 0, 1, False, 1),
+    ("carpaltunnelpreventioncream.png", 500, 0, 2, 0, 1, False, 1),
     ("ambidextrous.png", 10000, 0, 2, 0, 1, False, 10),
-    ("thousandfingers.png", 100000, 0, 1, 0.1, 1, False),
-    ("millionfingers.png", 10000000, 0, 1, 0, 5, False),
-    ("billionfingers.png", 100000000, 0, 1, 0, 10, False),
-    ("trillionfingers.png", 1000000000, 0, 1, 0, 20, False),
-    ("quadrillionfingers.png", 10000000000, 0, 1, 0, 20, False),
-    ("quintillionfingers.png", 10000000000000, 0, 1, 0, 20, False),
-    ("sextillionfingers.png", 10000000000000000, 0, 1, 0, 20, False),
-    ("septillionfingers.png", 10000000000000000000, 0, 1, 0, 20, False),
-    ("octillionfingers.png", 10000000000000000000000, 0, 1, 0, 20, False),
-    ("nonillionfingers.png", 10000000000000000000000000, 0, 1, 0, 20, False),
-    ("decillionfingers.png", 10000000000000000000000000000, 0, 1, 0, 20, False),
-    ("undecillionfingers.png", 10000000000000000000000000000000, 0, 1, 0, 20, False),
-}
+    ("thousandfingers.png", 100000, 0, 1, 0.1, 1, False, 25),
+    ("millionfingers.png", 10000000, 0, 1, 0, 5, False, 50),
+    ("billionfingers.png", 100000000, 0, 1, 0, 10, False, 100),
+    ("trillionfingers.png", 1000000000, 0, 1, 0, 20, False, 150),
+    ("quadrillionfingers.png", 10000000000, 0, 1, 0, 20, False, 200),
+    ("quintillionfingers.png", 10000000000000, 0, 1, 0, 20, False, 250),
+    ("sextillionfingers.png", 10000000000000000, 0, 1, 0, 20, False, 300),
+    ("septillionfingers.png", 10000000000000000000, 0, 1, 0, 20, False, 350),
+    ("octillionfingers.png", 10000000000000000000000, 0, 1, 0, 20, False, 400),
+    ("nonillionfingers.png", 10000000000000000000000000, 0, 1, 0, 20, False, 450),
+    ("decillionfingers.png", 10000000000000000000000000000, 0, 1, 0, 20, False, 500),
+    ("undecillionfingers.png", 10000000000000000000000000000000, 0, 1, 0, 20, False, 550),
+]
+
+UPGRADEBUTTONHEGIHT = 50
 
 # Fonts
 font.init()

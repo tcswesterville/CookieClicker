@@ -10,6 +10,7 @@ class PowerUP():
         self.powerIncrement = powerIncrement
         self.power = power
         self.childButton = childButton
+        self.amount = 0
         if (intervalSeconds > 0):
             self.initiateTimedEvent(intervalSeconds)
     def calculatePrice(self):
@@ -22,8 +23,8 @@ class PowerUP():
     def purchase(self, event, mousePosition):
         if (self.button.onClicked(event, mousePosition)):
             if self.button.unlocked and userVariables.cookies >= self.cost:
-                print(userVariables.cookies)
                 userVariables.cookies -= self.cost
+                self.amount += 1
                 self.power += self.powerIncrement
                 self.setPrice()
                 self.unlockPowerup()
@@ -39,3 +40,5 @@ class PowerUP():
         if (self.hasTimedEvent):
             schedule.every(intervalSeconds).seconds.do(self.effect)
             #schedule.every(intervalSeconds).seconds.do(self.scheduledJob)
+    def getAmount(self):
+        return self.amount
