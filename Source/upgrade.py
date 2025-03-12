@@ -13,6 +13,8 @@ class UpgradeLine():
         self.benefitingPowerUp = benefitingPowerUp
         self.metaData = metaData
         self.tier = 0
+        self.adder = 0
+        self.multiplier = 1
 
     def calculateUnlocked(self):
         if (self.benefitingPowerUp.getAmount() >= self.metaData[self.tier][7]):
@@ -20,7 +22,8 @@ class UpgradeLine():
 
     def update(self, screen):
         self.calculateUnlocked()
-        self.button.renderButton(screen)
+        if (self.button.unlocked):
+            self.button.renderButton(screen)
 
     def purchase(self, event, mousePosition):
         if (self.button.onClicked(event, mousePosition)):
@@ -33,3 +36,16 @@ class UpgradeLine():
         self.button.unlocked = False
         self.calculateUnlocked()
         self.button.changeBackground(self.path + self.metaData[self.tier][0])
+
+    def calculatePower(self):
+        self.adder += self.metaData[self.tier][2]
+        self.multiplier *= self.metaData[self.tier][3]
+
+    def applyUpgrade(self):
+        if (self.tier > 0):
+            amount = self.benefitingPowerUp.getAmount()
+            multiplier = self.multiplier + amount * self.metaData[self.tier - 1][5]
+            adder = self.adder + amount * self.metaData[self.tier - 1][4]
+            return (amount * multiplier * self.benefitingPowerUp.power + adder)
+        else:
+            return (self.benefitingPowerUp.getAmount() * self.benefitingPowerUp.power)

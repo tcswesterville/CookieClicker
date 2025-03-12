@@ -1,9 +1,22 @@
 from button import *
 import userVariables
+from definitions import *
+import upgrade
 import schedule
 
 class PowerUP():
-    def __init__(self, button: Button, initialCost: int, timedEvent: bool, powerIncrement = 1, power = 0, intervalSeconds = 1, childButton = -1):
+    def __init__(self,
+                 upgradeButtonLiney: int,
+                 upgradeButtonLinePath: str,
+                 metaData,
+                 button: Button, 
+                 initialCost: int, 
+                 timedEvent: bool, 
+                 powerIncrement = 1, 
+                 power = 0, 
+                 intervalSeconds = 1, 
+                 childButton = -1, 
+                 ):
         self.button = button
         self.cost = initialCost
         self.hasTimedEvent = timedEvent
@@ -11,6 +24,11 @@ class PowerUP():
         self.power = power
         self.childButton = childButton
         self.amount = 0
+        if (metaData != None):
+            self.upgradeButtonLine = upgrade.UpgradeLine(upgradeButtonLiney, upgradeButtonLinePath, self, metaData)
+        else:
+            self.upgradeButtonLine = None
+
         if (intervalSeconds > 0):
             self.initiateTimedEvent(intervalSeconds)
     def calculatePrice(self):
@@ -32,8 +50,13 @@ class PowerUP():
         if (self.childButton != -1):
             userVariables.shopButtons[self.childButton].unlocked = True
     def effect(self):
-        userVariables.cookies += self.power
-        userVariables.score += self.power
+        if (self.upgradeButtonLine != None):
+            amount = self.upgradeButtonLine.applyUpgrade()
+            userVariables.cookies += amount
+            userVariables.score += amount
+        else:
+            userVariables.cookies += self.power
+            userVariables.score += self.power
     def scheduledJob(self):
         print("Running Job")
     def initiateTimedEvent(self, intervalSeconds: int):
