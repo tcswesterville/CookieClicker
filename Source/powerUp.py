@@ -29,8 +29,9 @@ class PowerUP():
         else:
             self.upgradeButtonLine = None
 
-        if (intervalSeconds > 0):
-            self.initiateTimedEvent(intervalSeconds)
+        self.initiateTimedEvent(intervalSeconds)
+    def addUpgrade(self, upgrade):
+        self.upgradeButtonLine = upgrade
     def calculatePrice(self):
         self.cost *= 1.10
         self.cost = int(self.cost)
@@ -46,22 +47,26 @@ class PowerUP():
                 self.power += self.powerIncrement
                 self.setPrice()
                 self.unlockPowerup()
+    def purchaseUpgrade(self, event, mousePosition):
+        if (self.upgradeButtonLine != None and self.upgradeButtonLine.benefitingPowerUp == self):
+            self.upgradeButtonLine.purchase(event, mousePosition)
     def unlockPowerup(self):
         if (self.childButton != -1):
             userVariables.shopButtons[self.childButton].unlocked = True
     def effect(self):
         if (self.upgradeButtonLine != None):
-            amount = self.upgradeButtonLine.applyUpgrade()
-            userVariables.cookies += amount
-            userVariables.score += amount
+            power = self.upgradeButtonLine.applyUpgrade(self.power)
+            userVariables.cookies += power
+            userVariables.score += power
         else:
             userVariables.cookies += self.power
             userVariables.score += self.power
     def scheduledJob(self):
-        print("Running Job")
+        if (self.upgradeButtonLine != None):
+            print(self.upgradeButtonLine.applyUpgrade(self.power))
     def initiateTimedEvent(self, intervalSeconds: int):
         if (self.hasTimedEvent):
             schedule.every(intervalSeconds).seconds.do(self.effect)
-            #schedule.every(intervalSeconds).seconds.do(self.scheduledJob)
+        schedule.every(1).seconds.do(self.scheduledJob)
     def getAmount(self):
         return self.amount

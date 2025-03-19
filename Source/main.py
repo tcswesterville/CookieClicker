@@ -57,7 +57,8 @@ userVariables.shopButtons.append(button.Button(
     backgroundImage=cursorPurchaseButtonImage,
     text=cursorPrice
 ))
-userVariables.powerUps.append(powerUp.PowerUP(0, CLICKERUPGRADEPATH, CLICKERUPGRADES, userVariables.shopButtons[0], 15, True, 0.1, 0, 1, 1))
+# Automatic Clicker PowerUp
+userVariables.powerUps.append(powerUp.PowerUP(0, CLICKERUPGRADEPATH, CLICKERUPGRADES, userVariables.shopButtons[0], 15, True, 0.0, 0, 1, 1))
 
 userVariables.shopButtons.append(button.Button(
     x=screen_width - shopWidth,
@@ -68,8 +69,9 @@ userVariables.shopButtons.append(button.Button(
     text=grandmaPrice,
     unlocked=False
 ))
-userVariables.powerUps.append(powerUp.PowerUP(None, None, None, userVariables.shopButtons[1], grandmaPrice, True, 1, 0, 1, 2))
-
+# Manual Clicker PowerUp
+userVariables.powerUps.append(powerUp.PowerUP(None, None, None, userVariables.shopButtons[1], grandmaPrice, False, 1, 0, 0, 2))
+userVariables.powerUps[1].addUpgrade(userVariables.powerUps[0].upgradeButtonLine)
 
 userVariables.shopButtons.append(button.Button(
     x=screen_width - shopWidth,
@@ -167,9 +169,9 @@ while isRunning:
                     for powerup in userVariables.powerUps:
                         powerup.purchase(event, mousePosition)
                 if(userVariables.upgradeshopEnabled == True):
-                    for poweup in userVariables.powerUps:
+                    for powerup in userVariables.powerUps:
                         if (powerup.upgradeButtonLine != None):
-                            powerup.upgradeButtonLine.purchase(event, mousePosition)
+                            powerup.purchaseUpgrade(event, mousePosition)
 
     # Render main screen specific things
     if currentScreen == "mainScreen":

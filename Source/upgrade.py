@@ -33,6 +33,7 @@ class UpgradeLine():
 
     def upgrade(self):
         self.tier += 1
+        self.calculatePower()
         self.button.unlocked = False
         self.calculateUnlocked()
         self.button.changeBackground(self.path + self.metaData[self.tier][0])
@@ -41,11 +42,7 @@ class UpgradeLine():
         self.adder += self.metaData[self.tier][2]
         self.multiplier *= self.metaData[self.tier][3]
 
-    def applyUpgrade(self):
-        if (self.tier > 0):
-            amount = self.benefitingPowerUp.getAmount()
-            multiplier = self.multiplier + amount * self.metaData[self.tier - 1][5]
-            adder = self.adder + amount * self.metaData[self.tier - 1][4]
-            return (amount * multiplier * self.benefitingPowerUp.power + adder)
-        else:
-            return (self.benefitingPowerUp.getAmount() * self.benefitingPowerUp.power)
+    def applyUpgrade(self, amount):
+        amountFromMultiplier = self.multiplier * amount
+        amountFromAdder = self.adder + amount
+        return (amountFromMultiplier + amountFromAdder)
