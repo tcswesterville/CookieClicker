@@ -3,6 +3,7 @@ cookies = 10000000000000000
 score = 0
 
 shopButtons = []
+upgradeLines = []
 powerUps = []
 
 # Screen tracking varaible

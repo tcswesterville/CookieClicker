@@ -49,6 +49,13 @@ upgradeShopButton = button.Button(
     backgroundImage = upgradeShopButtonImage
 )
 
+# Clicker Upgrade Line - Amount only affected by auto clicker amount
+userVariables.upgradeLines.append(upgrade.UpgradeLine(0, CLICKERUPGRADEPATH, CLICKERUPGRADES))
+
+# Manual Clicker PowerUp
+userVariables.powerUps.append(powerUp.PowerUP(None, 0, False, 0, 1, 0, -1, userVariables.upgradeLines[0]))
+
+# Shop Button for Auto Cursor PowerUp
 userVariables.shopButtons.append(button.Button(
     x=screen_width - shopWidth,
     y=0,
@@ -57,9 +64,11 @@ userVariables.shopButtons.append(button.Button(
     backgroundImage=cursorPurchaseButtonImage,
     text=cursorPrice
 ))
-# Automatic Clicker PowerUp
-userVariables.powerUps.append(powerUp.PowerUP(0, CLICKERUPGRADEPATH, CLICKERUPGRADES, userVariables.shopButtons[0], 15, True, 0.0, 0, 1, 1))
 
+# Auto Cursor PowerUp (Cursor - not your mouse)
+userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[0], cursorPrice, True, 0.1, 0, 1, 1, userVariables.upgradeLines[0]))
+
+# Grandma Shop Button
 userVariables.shopButtons.append(button.Button(
     x=screen_width - shopWidth,
     y=userVariables.shopButtons[0].height + userVariables.shopButtons[0].y,
@@ -69,10 +78,10 @@ userVariables.shopButtons.append(button.Button(
     text=grandmaPrice,
     unlocked=False
 ))
-# Manual Clicker PowerUp
-userVariables.powerUps.append(powerUp.PowerUP(None, None, None, userVariables.shopButtons[1], grandmaPrice, False, 1, 0, 0, 2))
-userVariables.powerUps[1].addUpgrade(userVariables.powerUps[0].upgradeButtonLine)
+# Grandma PowerUp
+userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[1], grandmaPrice, True, 1, 0, 1, 2))
 
+# Farm Shop Button
 userVariables.shopButtons.append(button.Button(
     x=screen_width - shopWidth,
     y=userVariables.shopButtons[1].height + userVariables.shopButtons[1].y,
@@ -82,8 +91,9 @@ userVariables.shopButtons.append(button.Button(
     text=farmPrice,
     unlocked=False
 ))
-userVariables.powerUps.append(powerUp.PowerUP(None, None, None, userVariables.shopButtons[2], 1000, True, 8, 0, 1, 3))
+userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[2], farmPrice, True, 8, 0, 1, 3))
 
+# Mine Shop Button
 userVariables.shopButtons.append(button.Button(
     x=screen_width - shopWidth,
     y=userVariables.shopButtons[2].height + userVariables.shopButtons[2].y,
@@ -93,8 +103,9 @@ userVariables.shopButtons.append(button.Button(
     text=minePrice,
     unlocked=False
 ))
-userVariables.powerUps.append(powerUp.PowerUP(None, None, None, userVariables.shopButtons[3], 10000, True, 47, 0, 1, 4))
+userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[3], minePrice, True, 47, 0, 1, 4))
 
+# Factory Shop Button
 userVariables.shopButtons.append(button.Button(
     x=screen_width - shopWidth,
     y=userVariables.shopButtons[3].height + userVariables.shopButtons[3].y,
@@ -104,8 +115,9 @@ userVariables.shopButtons.append(button.Button(
     text=factoryPrice,
     unlocked=False
 ))
-userVariables.powerUps.append(powerUp.PowerUP(None, None, None, userVariables.shopButtons[4], 100000, True, 260, 0, 1, 5))
+userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[4], factoryPrice, True, 260, 0, 1, 5))
 
+# Bank Shop Button
 userVariables.shopButtons.append(button.Button(
     x=screen_width - shopWidth,
     y=userVariables.shopButtons[4].height + userVariables.shopButtons[4].y,
@@ -115,9 +127,9 @@ userVariables.shopButtons.append(button.Button(
     text=bankPrice,
     unlocked=False
 ))
-userVariables.powerUps.append(powerUp.PowerUP(None, None, None, userVariables.shopButtons[5], 1000000, True, 1400, 0, 1, 6))
+userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[5], bankPrice, True, 1400, 0, 1, 6))
 
-
+# Temple Shop Button
 userVariables.shopButtons.append(button.Button(
     x=screen_width - shopWidth,
     y=userVariables.shopButtons[5].height + userVariables.shopButtons[5].y,
@@ -128,9 +140,9 @@ userVariables.shopButtons.append(button.Button(
     unlocked=False
 ))
 
-userVariables.powerUps.append(powerUp.PowerUP(None, None, None, userVariables.shopButtons[6], templePrice, True, 7800, 0, 1, 7))
+userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[6], templePrice, True, 7800, 0, 1, 7))
 
-
+# Wizard Tower Shop Button
 userVariables.shopButtons.append(button.Button(
     x=screen_width - shopWidth,
     y=userVariables.shopButtons[6].height + userVariables.shopButtons[6].y,
@@ -140,7 +152,7 @@ userVariables.shopButtons.append(button.Button(
     text=wizardtowerPrice,
     unlocked=False
 ))
-userVariables.powerUps.append(powerUp.PowerUP(None, None, None, userVariables.shopButtons[7], wizardtowerPrice, True, 44000, 0))
+userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[7], wizardtowerPrice, True, 44000, 0, 1, -1))
 
 
 # Set up clock for fixed frame rate
@@ -159,8 +171,8 @@ while isRunning:
                 # Check for main button click
                 mousePosition = pygame.mouse.get_pos()
                 if mainButton.onClicked(event, mousePosition):
-                    userVariables.cookies += 1
-                    userVariables.score += 1
+                    print(userVariables.powerUps[0].power)
+                    userVariables.powerUps[0].effect()
                 if (shopButton.onClicked(event, mousePosition)):
                     userVariables.shopEnabled = not userVariables.shopEnabled
                 if (upgradeShopButton.onClicked(event, mousePosition)):
@@ -169,9 +181,8 @@ while isRunning:
                     for powerup in userVariables.powerUps:
                         powerup.purchase(event, mousePosition)
                 if(userVariables.upgradeshopEnabled == True):
-                    for powerup in userVariables.powerUps:
-                        if (powerup.upgradeButtonLine != None):
-                            powerup.purchaseUpgrade(event, mousePosition)
+                    for ugrade in userVariables.upgradeLines:
+                        ugrade.purchase(event, mousePosition)
 
     # Render main screen specific things
     if currentScreen == "mainScreen":
@@ -189,9 +200,8 @@ while isRunning:
                 button.renderButton(screen)
         if(userVariables.upgradeshopEnabled == True):
             pygame.draw.rect(screen, BLACK, (0, 0, shopWidth, shopHeight))
-            for powerup in userVariables.powerUps:
-                if (powerup.upgradeButtonLine != None):
-                    powerup.upgradeButtonLine.update(screen)
+            for upgrade in userVariables.upgradeLines:
+                upgrade.update(screen)
         # Render Shop Button
         shopButton.renderButton(screen)
         upgradeShopButton.renderButton(screen)
