@@ -28,7 +28,7 @@ wizardTowerPurchaseButtonImage = "Assets/Images/wizardTower.png"
 UPGRADESPATH = "Assets/Images/Upgrades/"
 CLICKERUPGRADEPATH = UPGRADESPATH + "Clicker/"
 
-# Upgrades (relative path, price, adder, multiplier, addition per unit, multiplier per unit, unit is me, unlock condition)
+# Upgrades (relative path, price, adder, multiplier, addition per unit, non cummulative multiplier for addition per unit, unit is me, unlock condition)
 
 CLICKERUPGRADES = [
     ("reinforcedindexfinger.png", 100, 0, 2, 0, 1, False, 1),

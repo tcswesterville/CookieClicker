@@ -50,7 +50,7 @@ upgradeShopButton = button.Button(
 )
 
 # Clicker Upgrade Line - Amount only affected by auto clicker amount
-userVariables.upgradeLines.append(upgrade.UpgradeLine(0, CLICKERUPGRADEPATH, CLICKERUPGRADES))
+userVariables.upgradeLines.append(upgrade.UpgradeLine(0, CLICKERUPGRADEPATH, CLICKERUPGRADES, 0, [0, 1]))
 
 # Manual Clicker PowerUp
 userVariables.powerUps.append(powerUp.PowerUP(None, 0, False, 0, 1, 0, -1, userVariables.upgradeLines[0]))
@@ -201,7 +201,7 @@ while isRunning:
         if(userVariables.upgradeshopEnabled == True):
             pygame.draw.rect(screen, BLACK, (0, 0, shopWidth, shopHeight))
             for upgrade in userVariables.upgradeLines:
-                upgrade.update(screen)
+                upgrade.update(screen, userVariables.powerUps)
         # Render Shop Button
         shopButton.renderButton(screen)
         upgradeShopButton.renderButton(screen)
