@@ -68,6 +68,9 @@ userVariables.shopButtons.append(button.Button(
 # Auto Cursor PowerUp (Cursor - not your mouse)
 userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[0], cursorPrice, True, 0.1, 0, 1, 1, userVariables.upgradeLines[0]))
 
+# Clicker Upgrade Line - Amount only affected by auto clicker amount
+userVariables.upgradeLines.append(upgrade.UpgradeLine(50, GRANDMAUPGRADEPATH, GRANDMAUPGRADES, 0, []))
+
 # Grandma Shop Button
 userVariables.shopButtons.append(button.Button(
     x=screen_width - shopWidth,
@@ -79,7 +82,7 @@ userVariables.shopButtons.append(button.Button(
     unlocked=False
 ))
 # Grandma PowerUp
-userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[1], grandmaPrice, True, 1, 0, 1, 2))
+userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[1], grandmaPrice, True, 1, 0, 1, 2, userVariables.upgradeLines[1]))
 
 # Farm Shop Button
 userVariables.shopButtons.append(button.Button(

@@ -52,8 +52,8 @@ class UpgradeLine():
 
     def upgrade(self):
         print("Upgrading")
-        self.calculatePower()
         self.tier += 1
+        self.calculatePower()
         self.button.unlocked = False
         self.calculateUnlocked()
         self.button.changeBackground(self.path + self.metaData[self.tier][0])

@@ -27,6 +27,7 @@ wizardTowerPurchaseButtonImage = "Assets/Images/wizardTower.png"
 
 UPGRADESPATH = "Assets/Images/Upgrades/"
 CLICKERUPGRADEPATH = UPGRADESPATH + "Clicker/"
+GRANDMAUPGRADEPATH = UPGRADESPATH + "Grandma/"
 
 # Upgrades (relative path, price, adder, multiplier, addition per unit, non cummulative multiplier for addition per unit, unit is me, unlock condition)
 
@@ -46,6 +47,24 @@ CLICKERUPGRADES = [
     ("nonillionfingers.png", 10000000000000000000000000, 0, 1, 0, 20, False, 450),
     ("decillionfingers.png", 10000000000000000000000000000, 0, 1, 0, 20, False, 500),
     ("undecillionfingers.png", 10000000000000000000000000000000, 0, 1, 0, 20, False, 550),
+]
+
+GRANDMAUPGRADES = [
+    ("ForwardsFromGrandma.png", 1000, 0, 2, 0, 1, False, 1),
+    ("SteelPlatedRollingPins.png", 5000, 0, 2, 0, 1, False, 5),
+    ("LubricatedDentures.png", 50000, 0, 2, 0, 1, False, 25),
+    ("PruneJuice.png", 5000000, 0, 2, 0, 1, False, 50),
+    ("DoubleThickGlasses.png", 500000000, 0, 2, 0, 1, False, 100),
+    ("AgingAgents.png", 50000000000, 0, 2, 0, 1, False, 150),
+    ("XtremeWalkers.png", 50000000000000, 0, 2, 0, 1, False, 200),
+    ("TheUnbridling.png", 50000000000000000, 0, 2, 0, 1, False, 250),
+    ("ReverseDementia.png", 50000000000000000000, 0, 2, 0, 1, False, 300),
+    ("TimeproofHairDyes.png", 50000000000000000000000, 0, 2, 0, 1, False, 350),
+    ("GoodManners.png", 500000000000000000000000000, 0, 2, 0, 1, False, 400),
+    ("GenerationDegeration.png", 5000000000000000000000000000, 0, 2, 0, 1, False, 450),
+    ("Visits.png", 50000000000000000000000000000000, 0, 2, 0, 1, False, 500),
+    ("KitchenCabinets.png", 500000000000000000000000000000000000, 0, 2, 0, 1, False, 550),
+    ("FoamTippedCanes.png", 5000000000000000000000000000000000000, 0, 2, 0, 1, False, 600),
 ]
 
 UPGRADEBUTTONHEGIHT = 50
