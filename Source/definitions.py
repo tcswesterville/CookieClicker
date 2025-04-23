@@ -24,6 +24,8 @@ factoryPurchaseButtonImage = "Assets/Images/factory.png"
 bankPurchaseButtonImage = "Assets/Images/Bank.png"
 templePurchaseButtonImage = "Assets/Images/temple.png"
 wizardTowerPurchaseButtonImage = "Assets/Images/wizardTower.png"
+ShipmentPurchaseButtonImage = "Assets/Images/Shipment.png"
+AlchamyLabPurchaseButtonImage = "Assets/Images/AlchemyLab.png"
 
 UPGRADESPATH = "Assets/Images/Upgrades/"
 CLICKERUPGRADEPATH = UPGRADESPATH + "Clicker/"
@@ -86,3 +88,5 @@ factoryPrice = 130000
 bankPrice = 1400000
 templePrice = 20000000
 wizardtowerPrice = 330000000
+ShipmentPrice = 5100000000
+AlchamyLabPrice = 75000000000

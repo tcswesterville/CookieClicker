@@ -155,7 +155,29 @@ userVariables.shopButtons.append(button.Button(
     text=wizardtowerPrice,
     unlocked=False
 ))
-userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[7], wizardtowerPrice, True, 44000, 0, 1, -1))
+userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[7], wizardtowerPrice, True, 44000, 0, 1, 8))
+
+userVariables.shopButtons.append(button.Button(
+    x=screen_width - shopWidth,
+    y=userVariables.shopButtons[7].height + userVariables.shopButtons[7].y,
+    width=shopWidth,
+    height=50,
+    backgroundImage=ShipmentPurchaseButtonImage,
+    text=wizardtowerPrice,
+    unlocked=False
+))
+userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[8], ShipmentPrice, True, 260000, 0, 1, 9))
+
+userVariables.shopButtons.append(button.Button(
+    x=screen_width - shopWidth,
+    y=userVariables.shopButtons[8].height + userVariables.shopButtons[8].y,
+    width=shopWidth,
+    height=50,
+    backgroundImage=AlchamyLabPurchaseButtonImage,
+    text=wizardtowerPrice,
+    unlocked=False
+))
+userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[9], AlchamyLabPrice, True, 1600000, 0, 1, -1))
 
 
 # Set up clock for fixed frame rate
