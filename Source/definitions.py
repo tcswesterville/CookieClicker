@@ -11,23 +11,29 @@ shopHeight = screen_height // (3 / 4)
 # Text
 APPLICATION_CAPTION = "Cookie Clicker"
 
+POWERUPSPATH = "Assets/Images/PowerUps/"
+UPGRADESPATH = "Assets/Images/Upgrades/"
+
+
 # Image Imports
 mainBackgroundImage = "Assets/Images/CookieClickerBackground01.webp"
-mainButtonImage = "Assets/Images/cookieButton.png"
+mainButtonImage ="Assets/Images/cookieButton.png"
 shopButtonImage = "Assets/Images/shopButton.png"
 upgradeShopButtonImage = "Assets/Images/upgradeShopButton.png"
-cursorPurchaseButtonImage = "Assets/Images/Cursor.png"
-grandmaPurchaseButtonImage = "Assets/Images/grandma.png"
-farmPurchaseButtonImage = "Assets/Images/farm.png"
-minePurchaseButtonImage = "Assets/Images/mine.png"
-factoryPurchaseButtonImage = "Assets/Images/factory.png"
-bankPurchaseButtonImage = "Assets/Images/Bank.png"
-templePurchaseButtonImage = "Assets/Images/temple.png"
-wizardTowerPurchaseButtonImage = "Assets/Images/wizardTower.png"
-ShipmentPurchaseButtonImage = "Assets/Images/Shipment.png"
-AlchamyLabPurchaseButtonImage = "Assets/Images/AlchemyLab.png"
 
-UPGRADESPATH = "Assets/Images/Upgrades/"
+# PowerUp Images (relative path)
+cursorPurchaseButtonImage = POWERUPSPATH + "Cursor.png"
+grandmaPurchaseButtonImage = POWERUPSPATH + "grandma.png"
+farmPurchaseButtonImage =  POWERUPSPATH + "farm.png"
+minePurchaseButtonImage =  POWERUPSPATH + "mine.png"
+factoryPurchaseButtonImage =  POWERUPSPATH + "factory.png"
+bankPurchaseButtonImage =  POWERUPSPATH + "Bank.png"
+templePurchaseButtonImage =  POWERUPSPATH + "temple.png"
+wizardTowerPurchaseButtonImage =  POWERUPSPATH + "wizardTower.png"
+ShipmentPurchaseButtonImage =  POWERUPSPATH + "Shipment.png"
+AlchamyLabPurchaseButtonImage =  POWERUPSPATH + "AlchemyLab.png"
+PortalPurchaseButtonImage =  POWERUPSPATH + "Portal.png"
+
 CLICKERUPGRADEPATH = UPGRADESPATH + "Clicker/"
 GRANDMAUPGRADEPATH = UPGRADESPATH + "Grandma/"
 
@@ -90,3 +96,4 @@ templePrice = 20000000
 wizardtowerPrice = 330000000
 ShipmentPrice = 5100000000
 AlchamyLabPrice = 75000000000
+PortalPrice = 1000000000000
