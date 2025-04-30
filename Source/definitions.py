@@ -6,7 +6,13 @@ screen_height = 600
 
 # Shop dimensions
 shopWidth = screen_width // 3
-shopHeight = screen_height // (3 / 4)
+shopHeight = screen_height
+
+shopButtonHeight = screen_height // 8
+
+shopItemHeight = 50
+
+shopItemCount = 1 + (shopHeight - shopButtonHeight) // shopItemHeight
 
 # Text
 APPLICATION_CAPTION = "Cookie Clicker"

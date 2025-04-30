@@ -9,7 +9,7 @@ ignoredPowerUpsList - list of indecies of powers from the power up list to be ig
 '''
 class UpgradeLine():
     def __init__ (self, buttony: int, path: str, metaData, amountOfBenefittingPowerUp: int = 0, ignoredPowerUps: list = []):
-        self.button = Button(0, buttony, shopWidth, UPGRADEBUTTONHEGIHT, path + metaData[0][0], "", amountOfBenefittingPowerUp >= metaData[0][7])
+        self.button = Button(0, buttony, shopWidth, shopItemHeight, path + metaData[0][0], "", amountOfBenefittingPowerUp >= metaData[0][7])
         self.path = path
         self.amountOfBenefittingPowerUp = amountOfBenefittingPowerUp
         self.metaData = metaData

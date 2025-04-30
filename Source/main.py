@@ -37,7 +37,7 @@ shopButton = button.Button(
     x=screen_width - (screen_width // 8) - int(screen_width * 0.0125),
     y=screen_height - ((screen_height // 8) / 2) - int(screen_height  * (1 / 36)),
     width = screen_width // 8,
-    height = screen_height // 8,
+    height = shopButtonHeight,
     backgroundImage = shopButtonImage
 )
 
@@ -45,7 +45,7 @@ upgradeShopButton = button.Button(
     x=0,
     y=screen_height - ((screen_height // 5) / 2) - int(screen_height  * (1 / 25)),
     width = screen_width // 5,
-    height = screen_height // 5,
+    height = shopButtonHeight,
     backgroundImage = upgradeShopButtonImage
 )
 
@@ -60,7 +60,7 @@ userVariables.shopButtons.append(button.Button(
     x=screen_width - shopWidth,
     y=0,
     width = shopWidth,
-    height = 50,
+    height = shopItemHeight,
     backgroundImage=cursorPurchaseButtonImage,
     text=cursorPrice
 ))
@@ -76,7 +76,7 @@ userVariables.shopButtons.append(button.Button(
     x=screen_width - shopWidth,
     y=userVariables.shopButtons[0].height + userVariables.shopButtons[0].y,
     width = shopWidth,
-    height = 50,
+    height = shopItemHeight,
     backgroundImage=grandmaPurchaseButtonImage,
     text=grandmaPrice,
     unlocked=False
@@ -89,7 +89,7 @@ userVariables.shopButtons.append(button.Button(
     x=screen_width - shopWidth,
     y=userVariables.shopButtons[1].height + userVariables.shopButtons[1].y,
     width = shopWidth,
-    height = 50,
+    height = shopItemHeight,
     backgroundImage=farmPurchaseButtonImage,
     text=farmPrice,
     unlocked=False
@@ -101,7 +101,7 @@ userVariables.shopButtons.append(button.Button(
     x=screen_width - shopWidth,
     y=userVariables.shopButtons[2].height + userVariables.shopButtons[2].y,
     width = shopWidth,
-    height = 50,
+    height = shopItemHeight,
     backgroundImage=minePurchaseButtonImage,
     text=minePrice,
     unlocked=False
@@ -113,7 +113,7 @@ userVariables.shopButtons.append(button.Button(
     x=screen_width - shopWidth,
     y=userVariables.shopButtons[3].height + userVariables.shopButtons[3].y,
     width = shopWidth,
-    height = 50,
+    height = shopItemHeight,
     backgroundImage=factoryPurchaseButtonImage,
     text=factoryPrice,
     unlocked=False
@@ -125,7 +125,7 @@ userVariables.shopButtons.append(button.Button(
     x=screen_width - shopWidth,
     y=userVariables.shopButtons[4].height + userVariables.shopButtons[4].y,
     width=shopWidth,
-    height=50,
+    height = shopItemHeight,
     backgroundImage=bankPurchaseButtonImage,
     text=bankPrice,
     unlocked=False
@@ -137,7 +137,7 @@ userVariables.shopButtons.append(button.Button(
     x=screen_width - shopWidth,
     y=userVariables.shopButtons[5].height + userVariables.shopButtons[5].y,
     width=shopWidth,
-    height=50,
+    height = shopItemHeight,
     backgroundImage=templePurchaseButtonImage,
     text=templePrice,
     unlocked=False
@@ -150,7 +150,7 @@ userVariables.shopButtons.append(button.Button(
     x=screen_width - shopWidth,
     y=userVariables.shopButtons[6].height + userVariables.shopButtons[6].y,
     width=shopWidth,
-    height=50,
+    height = shopItemHeight,
     backgroundImage=wizardTowerPurchaseButtonImage,
     text=wizardtowerPrice,
     unlocked=False
@@ -161,7 +161,7 @@ userVariables.shopButtons.append(button.Button(
     x=screen_width - shopWidth,
     y=userVariables.shopButtons[7].height + userVariables.shopButtons[7].y,
     width=shopWidth,
-    height=50,
+    height = shopItemHeight,
     backgroundImage=ShipmentPurchaseButtonImage,
     text=ShipmentPrice,
     unlocked=False
@@ -172,7 +172,7 @@ userVariables.shopButtons.append(button.Button(
     x=screen_width - shopWidth,
     y=userVariables.shopButtons[8].height + userVariables.shopButtons[8].y,
     width=shopWidth,
-    height=50,
+    height = shopItemHeight,
     backgroundImage=AlchamyLabPurchaseButtonImage,
     text=AlchamyLabPrice,
     unlocked=False
@@ -183,7 +183,7 @@ userVariables.shopButtons.append(button.Button(
     x=screen_width - shopWidth,
     y=userVariables.shopButtons[9].height + userVariables.shopButtons[9].y,
     width=shopWidth,
-    height=50,
+    height = shopItemHeight,
     backgroundImage=PortalPurchaseButtonImage,
     text=PortalPrice,
     unlocked=False
