@@ -7,6 +7,7 @@ from definitions import *
 import userVariables
 import powerUp
 import upgrade
+import scrollHandler
 import helperFunctions
 import schedule
 
@@ -190,6 +191,14 @@ userVariables.shopButtons.append(button.Button(
 ))
 userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[10], PortalPrice, True, 10000000, 0, 1, -1))
 
+userVariables.scrollHandler = scrollHandler.ScrollHandler(
+    userVariables.shopButtons,
+    xStart=screen_width - shopWidth,
+    yStart=0,
+    xOffset=0,
+    yOffset=shopItemHeight,
+    screenHeight=screen_height
+)
 
 # Set up clock for fixed frame rate
 clock = pygame.time.Clock()
@@ -219,6 +228,13 @@ while isRunning:
                 if(userVariables.upgradeshopEnabled == True):
                     for ugrade in userVariables.upgradeLines:
                         ugrade.purchase(event, mousePosition)
+            elif event.type == pygame.MOUSEWHEEL:
+                if event.y > 0:
+                    # Scroll up
+                    userVariables.scrollHandler.scrollUp()
+                elif event.y < 0:
+                    # Scroll down
+                    userVariables.scrollHandler.scrollDown()
 
     # Render main screen specific things
     if currentScreen == "mainScreen":
@@ -232,8 +248,7 @@ while isRunning:
         
         if(userVariables.shopEnabled == True):
             pygame.draw.rect(screen, BLACK, (screen_width - shopWidth, 0, shopWidth, shopHeight))
-            for button in userVariables.shopButtons:
-                button.renderButton(screen)
+            userVariables.scrollHandler.renderButtons(screen)
         if(userVariables.upgradeshopEnabled == True):
             pygame.draw.rect(screen, BLACK, (0, 0, shopWidth, shopHeight))
             for upgrade in userVariables.upgradeLines:

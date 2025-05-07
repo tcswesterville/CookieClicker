@@ -5,6 +5,7 @@ score = 0
 shopButtons = []
 upgradeLines = []
 powerUps = []
+scrollHandler = None
 
 # Screen tracking varaible
 currentScreen = "mainScreen"
