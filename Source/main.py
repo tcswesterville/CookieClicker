@@ -46,7 +46,7 @@ upgradeShopButton = button.Button(
     x=0,
     y=screen_height - ((screen_height // 5) / 2) - int(screen_height  * (1 / 25)),
     width = screen_width // 5,
-    height = shopButtonHeight,
+    height = shopButtonHeight*1.5,
     backgroundImage = upgradeShopButtonImage
 )
 
@@ -189,7 +189,29 @@ userVariables.shopButtons.append(button.Button(
     text=PortalPrice,
     unlocked=False
 ))
-userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[10], PortalPrice, True, 10000000, 0, 1, -1))
+userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[10], PortalPrice, True, 10000000, 0, 1, 11))
+
+userVariables.shopButtons.append(button.Button(
+    x=screen_width - shopWidth,
+    y=userVariables.shopButtons[10].height + userVariables.shopButtons[10].y,
+    width=shopWidth,
+    height = shopItemHeight,
+    backgroundImage=TimeMachinePurchaseButtonImage,
+    text=TimeMachinePrice,
+    unlocked=False
+))
+userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[11], TimeMachinePrice, True, 65000000, 0, 1, -1))
+
+userVariables.shopButtons.append(button.Button(
+    x=screen_width - shopWidth,
+    y=userVariables.shopButtons[11].height + userVariables.shopButtons[11].y,
+    width=shopWidth,
+    height = shopItemHeight,
+    backgroundImage=AntimPurchaseButtonImage,
+    text=TimeMachinePrice,
+    unlocked=False
+))
+userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[12], AntimPrice, True, 430000000, 0, 1, -1))
 
 userVariables.scrollHandler = scrollHandler.ScrollHandler(
     userVariables.shopButtons,
@@ -197,7 +219,9 @@ userVariables.scrollHandler = scrollHandler.ScrollHandler(
     yStart=0,
     xOffset=0,
     yOffset=shopItemHeight,
-    screenHeight=screen_height
+    screenHeight=screen_height,
+    min_x = screen_width - shopWidth,
+    max_x = screen_width
 )
 
 # Set up clock for fixed frame rate
@@ -212,11 +236,10 @@ while isRunning:
         if event.type == pygame.QUIT:
             isRunning = False
         if currentScreen == "mainScreen":
-            if event.type == pygame.MOUSEBUTTONDOWN:
+            if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 # Check for main button click
                 mousePosition = pygame.mouse.get_pos()
                 if mainButton.onClicked(event, mousePosition):
-                    print(userVariables.powerUps[0].power)
                     userVariables.powerUps[0].effect()
                 if (shopButton.onClicked(event, mousePosition)):
                     userVariables.shopEnabled = not userVariables.shopEnabled
@@ -228,13 +251,8 @@ while isRunning:
                 if(userVariables.upgradeshopEnabled == True):
                     for ugrade in userVariables.upgradeLines:
                         ugrade.purchase(event, mousePosition)
-            elif event.type == pygame.MOUSEWHEEL:
-                if event.y > 0:
-                    # Scroll up
-                    userVariables.scrollHandler.scrollUp()
-                elif event.y < 0:
-                    # Scroll down
-                    userVariables.scrollHandler.scrollDown()
+            elif event.type==pygame.MOUSEWHEEL:
+                userVariables.scrollHandler.scroll(event.y)
 
     # Render main screen specific things
     if currentScreen == "mainScreen":

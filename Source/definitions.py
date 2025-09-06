@@ -39,6 +39,8 @@ wizardTowerPurchaseButtonImage =  POWERUPSPATH + "wizardTower.png"
 ShipmentPurchaseButtonImage =  POWERUPSPATH + "Shipment.png"
 AlchamyLabPurchaseButtonImage =  POWERUPSPATH + "AlchemyLab.png"
 PortalPurchaseButtonImage =  POWERUPSPATH + "Portal.png"
+TimeMachinePurchaseButtonImage =  POWERUPSPATH + "TimeMachine.png"
+AntimPurchaseButtonImage =  POWERUPSPATH + "Antim.png"
 
 CLICKERUPGRADEPATH = UPGRADESPATH + "Clicker/"
 GRANDMAUPGRADEPATH = UPGRADESPATH + "Grandma/"
@@ -81,7 +83,7 @@ GRANDMAUPGRADES = [
     ("FoamTippedCanes.png", 5000000000000000000000000000000000000, 0, 2, 0, 1, False, 600),
 ]
 
-UPGRADEBUTTONHEGIHT = 50
+UPGRADEBUTTONHEGIHT = 100
 
 # Fonts
 font.init()
@@ -103,3 +105,5 @@ wizardtowerPrice = 330000000
 ShipmentPrice = 5100000000
 AlchamyLabPrice = 75000000000
 PortalPrice = 1000000000000
+TimeMachinePrice = 14000000000000
+AntimPrice = 170000000000000

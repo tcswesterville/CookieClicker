@@ -13,21 +13,24 @@ class Button():
         self.text = text
         self.resetText(text)
         self.unlocked = unlocked
-
+        self.Offset = 0
         self.changeBackground(backgroundImage)
-
-    def renderButton(self, screen):
+    def renderButton(self, screen, scroll = 0):
+        self.Offset = scroll
         # Blit the scaled image to the screen
         if self.unlocked:
-            screen.blit(self.originalBackgroundImage, (self.x, self.y))
+            screen.blit(self.originalBackgroundImage, (self.x, self.y + scroll))
         else:
-            screen.blit(self.backgroundImage, (self.x, self.y))
+            screen.blit(self.backgroundImage, (self.x, self.y + scroll))
         if self.text != "":
-            screen.blit(self.text, (self.x + self.width, self.y + self.height // 2))
+            screen.blit(self.text, (self.x + self.width, self.y + (self.height // 2) + scroll))
 
     def onClicked(self, event, mousePosition: tuple[int, int]):
+            # FIX ME: creat new rect instead of using same refrence
+            shifted = self.buttonRect
+            shifted.y += self.Offset
             # Check if the mouse position is within the button rectangle
-            if event.type == pygame.MOUSEBUTTONDOWN and self.buttonRect.collidepoint(mousePosition):
+            if event.type == pygame.MOUSEBUTTONDOWN and shifted.collidepoint(mousePosition):
                 return True
             return False
     
