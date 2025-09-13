@@ -16,7 +16,10 @@ class Button():
         self.Offset = 0
         self.changeBackground(backgroundImage)
     def renderButton(self, screen, scroll = 0):
-        self.Offset = scroll
+        print(self.Offset, scroll)
+        if self.Offset != scroll:
+            self.buttonRect = pygame.Rect(self.x, self.y + scroll, self.width, self.height)
+            self.Offset = scroll
         # Blit the scaled image to the screen
         if self.unlocked:
             screen.blit(self.originalBackgroundImage, (self.x, self.y + scroll))
@@ -26,11 +29,8 @@ class Button():
             screen.blit(self.text, (self.x + self.width, self.y + (self.height // 2) + scroll))
 
     def onClicked(self, event, mousePosition: tuple[int, int]):
-            # FIX ME: creat new rect instead of using same refrence
-            shifted = self.buttonRect
-            shifted.y += self.Offset
             # Check if the mouse position is within the button rectangle
-            if event.type == pygame.MOUSEBUTTONDOWN and shifted.collidepoint(mousePosition):
+            if event.type == pygame.MOUSEBUTTONDOWN and self.buttonRect.collidepoint(mousePosition):
                 return True
             return False
     

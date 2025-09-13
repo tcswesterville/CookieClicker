@@ -13,9 +13,9 @@ class ScrollHandler():
                 x.click()
                 return True
     def scroll(self, direction):
-        mouse_x, mouse_y = pygame.mouse.get_pos()
-        if not (self.min_x <= mouse_x <= self.max_x):
-            return
+        #mouse_x, _ = pygame.mouse.get_pos()
+       # if not (self.min_x <= mouse_x <= self.max_x):
+            #return
         self.scroll_Offset += direction*self.scroll_Speed
         Max=0
         Min=-len(self.buttons)*self.scroll_Speed

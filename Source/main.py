@@ -200,7 +200,7 @@ userVariables.shopButtons.append(button.Button(
     text=TimeMachinePrice,
     unlocked=False
 ))
-userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[11], TimeMachinePrice, True, 65000000, 0, 1, -1))
+userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[11], TimeMachinePrice, True, 65000000, 0, 1, 12))
 
 userVariables.shopButtons.append(button.Button(
     x=screen_width - shopWidth,
