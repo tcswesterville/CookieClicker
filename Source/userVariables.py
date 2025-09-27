@@ -15,46 +15,46 @@ upgradeshopEnabled = False
 lastEventTime = 0
 
 # PowerUP
-cursorPower = 1
+cursorPower = 0.1
 
-goldenCursors = 0
-goldenCursorPower = 0
+grandma = 0
+grandmaPower = 1
 
 farms = 0
-farmPower = 0
+farmPower = 8
 
 mines = 0
-minePower = 0
+minePower = 47
 
 factories = 0
-factoryPower = 0
+factoryPower = 260
 
 banks = 0
-bankPower = 0
+bankPower = 1400
 
 temples = 0
-templePower = 0
+templePower = 7800
 
 wizardTowers = 0
-wizardTowerPower = 0
+wizardTowerPower = 44000
 
 shipments = 0
-shipmentPower = 0
+shipmentPower = 260000
 
 alchemyLabs = 0
-alchemyLabPower = 0
+alchemyLabPower = 1600000
 
 portals = 0
-portalPower = 0
+portalPower = 10000000
 
 timeMachines = 0
-timeMachinePower = 0
+timeMachinePower = 65000000
 
 antimatterCondensers = 0
-antimatterCondensrPower = 0
+antimatterCondenserPower = 430000000
 
 prisms = 0
-prismPower = 0
+prismPower = 2900000000
 
 chanceMakers = 0
 chanceMakerPower = 0
@@ -81,7 +81,5 @@ acheivements = 0
 
 # Power up power calculations
 def getBuildingCount():
-    return cursorPower + goldenCursors + farms + mines + factories + banks + temples + wizardTowers + shipments + alchemyLabs + portals + timeMachines + antimatterCondensers + prisms + chanceMakers + fractalEngines + javascriptConsoles + idleverses + cortexBakers + yous
+    return cursorPower + farms + mines + factories + banks + temples + wizardTowers + shipments + alchemyLabs + portals + timeMachines + antimatterCondensers + prisms + chanceMakers + fractalEngines + javascriptConsoles + idleverses + cortexBakers + yous
 
-def getGoldenCursorPower():
-    return goldenCursors

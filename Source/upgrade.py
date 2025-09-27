@@ -23,7 +23,8 @@ class UpgradeLine():
         self.perUnitAdderEffect = 0
 
     def IncrementAmountOfBenefittingPowerUp(self):
-        self.amountOfBenefittingPowerUp += 1
+        self.amountOfBenefittingPowerUp = self.amountOfBenefittingPowerUp + 1
+        print(f"{self.amountOfBenefittingPowerUp}")
         self.calculateUnlocked()
 
     def calculateUnlocked(self):
@@ -38,6 +39,7 @@ class UpgradeLine():
         
         self.calculateUnlocked()
         if (self.button.unlocked):
+            print("Added Upgrade")
             self.button.renderButton(screen)
         perUnitAdderEffect = self.perUnitAdderEffect
         self.calculatePerUnitPower(amount)

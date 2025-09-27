@@ -40,6 +40,7 @@ class PowerUP():
                 userVariables.cookies -= self.cost
                 self.amount += 1
                 if (self.upgrade != None):
+                    print("h")
                     self.upgrade.IncrementAmountOfBenefittingPowerUp()
                 self.power += self.powerIncrement
                 self.setPrice()

@@ -25,6 +25,19 @@ pygame.init()
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption(APPLICATION_CAPTION)
 
+def create_category(ID, next_ID, price, cps, image, text, unlocking_ID):
+    userVariables.shopButtons.append(button.Button(
+        x=screen_width - shopWidth,
+        y=userVariables.shopButtons[ID].height + userVariables.shopButtons[ID].y,
+        width=shopWidth,
+        height = shopItemHeight,
+        backgroundImage=image,
+        text=text,
+        unlocked=False
+    ))
+    userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[next_ID], price, True, cps, 0, 1, unlocking_ID))
+
+
 # Create the main button
 mainButton = buttonCircle.ButtonCircle(
     x=screen_width // 2,
@@ -50,13 +63,13 @@ upgradeShopButton = button.Button(
     backgroundImage = upgradeShopButtonImage
 )
 
-# Clicker Upgrade Line - Amount only affected by auto clicker amount
+# Cursor Upgrade Line
 userVariables.upgradeLines.append(upgrade.UpgradeLine(0, CLICKERUPGRADEPATH, CLICKERUPGRADES, 0, [0, 1]))
 
 # Manual Clicker PowerUp
-userVariables.powerUps.append(powerUp.PowerUP(None, 0, False, 0, 1, 0, -1, userVariables.upgradeLines[0]))
+userVariables.powerUps.append(powerUp.PowerUP(None, 0, False, 0, 1, 0, -1))
 
-# Shop Button for Auto Cursor PowerUp
+# Cursor
 userVariables.shopButtons.append(button.Button(
     x=screen_width - shopWidth,
     y=0,
@@ -65,153 +78,51 @@ userVariables.shopButtons.append(button.Button(
     backgroundImage=cursorPurchaseButtonImage,
     text=cursorPrice
 ))
+userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[0], cursorPrice, True, 0.1, 0, 1, 1))
 
-# Auto Cursor PowerUp (Cursor - not your mouse)
-userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[0], cursorPrice, True, 0.1, 0, 1, 1, userVariables.upgradeLines[0]))
-
-# Clicker Upgrade Line - Amount only affected by auto clicker amount
+# Grandma Upgrade Line
 userVariables.upgradeLines.append(upgrade.UpgradeLine(50, GRANDMAUPGRADEPATH, GRANDMAUPGRADES, 0, []))
 
-# Grandma Shop Button
-userVariables.shopButtons.append(button.Button(
-    x=screen_width - shopWidth,
-    y=userVariables.shopButtons[0].height + userVariables.shopButtons[0].y,
-    width = shopWidth,
-    height = shopItemHeight,
-    backgroundImage=grandmaPurchaseButtonImage,
-    text=grandmaPrice,
-    unlocked=False
-))
-# Grandma PowerUp
-userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[1], grandmaPrice, True, 1, 0, 1, 2, userVariables.upgradeLines[1]))
+# Grandma
+create_category(0, 1, grandmaPrice, userVariables.grandmaPower, grandmaPurchaseButtonImage, grandmaPrice, 2)
 
-# Farm Shop Button
-userVariables.shopButtons.append(button.Button(
-    x=screen_width - shopWidth,
-    y=userVariables.shopButtons[1].height + userVariables.shopButtons[1].y,
-    width = shopWidth,
-    height = shopItemHeight,
-    backgroundImage=farmPurchaseButtonImage,
-    text=farmPrice,
-    unlocked=False
-))
-userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[2], farmPrice, True, 8, 0, 1, 3))
+# Farm
+create_category(1, 2, farmPrice, userVariables.farmPower, farmPurchaseButtonImage, farmPrice, 3)
 
-# Mine Shop Button
-userVariables.shopButtons.append(button.Button(
-    x=screen_width - shopWidth,
-    y=userVariables.shopButtons[2].height + userVariables.shopButtons[2].y,
-    width = shopWidth,
-    height = shopItemHeight,
-    backgroundImage=minePurchaseButtonImage,
-    text=minePrice,
-    unlocked=False
-))
-userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[3], minePrice, True, 47, 0, 1, 4))
+# Mine
+create_category(2, 3, minePrice, userVariables.minePower, minePurchaseButtonImage, minePrice, 4)
 
-# Factory Shop Button
-userVariables.shopButtons.append(button.Button(
-    x=screen_width - shopWidth,
-    y=userVariables.shopButtons[3].height + userVariables.shopButtons[3].y,
-    width = shopWidth,
-    height = shopItemHeight,
-    backgroundImage=factoryPurchaseButtonImage,
-    text=factoryPrice,
-    unlocked=False
-))
-userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[4], factoryPrice, True, 260, 0, 1, 5))
+# Factory
+create_category(3, 4, factoryPrice, userVariables.factoryPower, factoryPurchaseButtonImage, factoryPrice, 5)
 
-# Bank Shop Button
-userVariables.shopButtons.append(button.Button(
-    x=screen_width - shopWidth,
-    y=userVariables.shopButtons[4].height + userVariables.shopButtons[4].y,
-    width=shopWidth,
-    height = shopItemHeight,
-    backgroundImage=bankPurchaseButtonImage,
-    text=bankPrice,
-    unlocked=False
-))
-userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[5], bankPrice, True, 1400, 0, 1, 6))
+# Bank
+create_category(4, 5, bankPrice, userVariables.bankPower, bankPurchaseButtonImage, bankPrice, 6)
 
-# Temple Shop Button
-userVariables.shopButtons.append(button.Button(
-    x=screen_width - shopWidth,
-    y=userVariables.shopButtons[5].height + userVariables.shopButtons[5].y,
-    width=shopWidth,
-    height = shopItemHeight,
-    backgroundImage=templePurchaseButtonImage,
-    text=templePrice,
-    unlocked=False
-))
+# Temple
+create_category(5, 6, templePrice, userVariables.templePower, templePurchaseButtonImage, templePrice, 7)
 
-userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[6], templePrice, True, 7800, 0, 1, 7))
+# Wizard Tower
+create_category(6, 7, wizardtowerPrice, userVariables.wizardTowerPower, wizardTowerPurchaseButtonImage, wizardtowerPrice, 8)
 
-# Wizard Tower Shop Button
-userVariables.shopButtons.append(button.Button(
-    x=screen_width - shopWidth,
-    y=userVariables.shopButtons[6].height + userVariables.shopButtons[6].y,
-    width=shopWidth,
-    height = shopItemHeight,
-    backgroundImage=wizardTowerPurchaseButtonImage,
-    text=wizardtowerPrice,
-    unlocked=False
-))
-userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[7], wizardtowerPrice, True, 44000, 0, 1, 8))
+# Shipment
+create_category(7, 8, ShipmentPrice, userVariables.shipmentPower, ShipmentPurchaseButtonImage, ShipmentPrice, 9)
 
-userVariables.shopButtons.append(button.Button(
-    x=screen_width - shopWidth,
-    y=userVariables.shopButtons[7].height + userVariables.shopButtons[7].y,
-    width=shopWidth,
-    height = shopItemHeight,
-    backgroundImage=ShipmentPurchaseButtonImage,
-    text=ShipmentPrice,
-    unlocked=False
-))
-userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[8], ShipmentPrice, True, 260000, 0, 1, 9))
+# Alchemy Lab
+create_category(8, 9, AlchemyLabPrice, userVariables.alchemyLabPower, AlchamyLabPurchaseButtonImage, AlchemyLabPrice, 10)
 
-userVariables.shopButtons.append(button.Button(
-    x=screen_width - shopWidth,
-    y=userVariables.shopButtons[8].height + userVariables.shopButtons[8].y,
-    width=shopWidth,
-    height = shopItemHeight,
-    backgroundImage=AlchamyLabPurchaseButtonImage,
-    text=AlchamyLabPrice,
-    unlocked=False
-))
-userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[9], AlchamyLabPrice, True, 1600000, 0, 1, 10))
+# Portal
+create_category(9, 10, PortalPrice, userVariables.portalPower, PortalPurchaseButtonImage, PortalPrice, 11)
 
-userVariables.shopButtons.append(button.Button(
-    x=screen_width - shopWidth,
-    y=userVariables.shopButtons[9].height + userVariables.shopButtons[9].y,
-    width=shopWidth,
-    height = shopItemHeight,
-    backgroundImage=PortalPurchaseButtonImage,
-    text=PortalPrice,
-    unlocked=False
-))
-userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[10], PortalPrice, True, 10000000, 0, 1, 11))
+# TimeMachine
+create_category(10, 11, TimeMachinePrice, userVariables.timeMachinePower, TimeMachinePurchaseButtonImage, TimeMachinePrice, 12)
 
-userVariables.shopButtons.append(button.Button(
-    x=screen_width - shopWidth,
-    y=userVariables.shopButtons[10].height + userVariables.shopButtons[10].y,
-    width=shopWidth,
-    height = shopItemHeight,
-    backgroundImage=TimeMachinePurchaseButtonImage,
-    text=TimeMachinePrice,
-    unlocked=False
-))
-userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[11], TimeMachinePrice, True, 65000000, 0, 1, 12))
+# AntiMatter Condenser
+create_category(11, 12, AntiMatterCondenserPrice, userVariables.antimatterCondenserPower, AntiMatterCondenserPurchaseButtonImage, AntiMatterCondenserPrice, 13)
 
-userVariables.shopButtons.append(button.Button(
-    x=screen_width - shopWidth,
-    y=userVariables.shopButtons[11].height + userVariables.shopButtons[11].y,
-    width=shopWidth,
-    height = shopItemHeight,
-    backgroundImage=AntimPurchaseButtonImage,
-    text=TimeMachinePrice,
-    unlocked=False
-))
-userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[12], AntimPrice, True, 430000000, 0, 1, -1))
+# Prism
+create_category(12, 13, PrismPrice, userVariables.prismPower, PrismPurchaseButtonImage, PrismPrice, -1)
+
+# numbers, price variables, cookies per second, image, text
 
 userVariables.scrollHandler = scrollHandler.ScrollHandler(
     userVariables.shopButtons,
@@ -270,6 +181,7 @@ while isRunning:
         if(userVariables.upgradeshopEnabled == True):
             pygame.draw.rect(screen, BLACK, (0, 0, shopWidth, shopHeight))
             for upgrade in userVariables.upgradeLines:
+                
                 upgrade.update(screen, userVariables.powerUps)
         # Render Shop Button
         shopButton.renderButton(screen)
