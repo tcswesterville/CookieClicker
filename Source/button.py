@@ -16,7 +16,7 @@ class Button():
         self.Offset = 0
         self.changeBackground(backgroundImage)
     def renderButton(self, screen, scroll = 0):
-        # print(self.Offset, scroll)
+
         if self.Offset != scroll:
             self.buttonRect = pygame.Rect(self.x, self.y + scroll, self.width, self.height)
             self.Offset = scroll

@@ -39,7 +39,6 @@ class UpgradeLine():
         
         self.calculateUnlocked()
         if (self.button.unlocked):
-            print("Added Upgrade")
             self.button.renderButton(screen)
         perUnitAdderEffect = self.perUnitAdderEffect
         self.calculatePerUnitPower(amount)

@@ -25,7 +25,7 @@ pygame.init()
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption(APPLICATION_CAPTION)
 
-def create_category(ID, next_ID, price, cps, image, text, unlocking_ID):
+def create_category(ID, next_ID, price, cps, image, text, unlocking_ID, upgrade=None):
     userVariables.shopButtons.append(button.Button(
         x=screen_width - shopWidth,
         y=userVariables.shopButtons[ID].height + userVariables.shopButtons[ID].y,
@@ -35,7 +35,7 @@ def create_category(ID, next_ID, price, cps, image, text, unlocking_ID):
         text=text,
         unlocked=False
     ))
-    userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[next_ID], price, True, cps, 0, 1, unlocking_ID))
+    userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[next_ID], price, True, cps, 0, 1, unlocking_ID, upgrade))
 
 
 # Create the main button
@@ -71,20 +71,20 @@ userVariables.powerUps.append(powerUp.PowerUP(None, 0, False, 0, 1, 0, -1))
 
 # Cursor
 userVariables.shopButtons.append(button.Button(
-    x=screen_width - shopWidth,
-    y=0,
-    width = shopWidth,
-    height = shopItemHeight,
-    backgroundImage=cursorPurchaseButtonImage,
-    text=cursorPrice
+x=screen_width - shopWidth,
+y=0,
+width = shopWidth,
+height = shopItemHeight,
+backgroundImage=cursorPurchaseButtonImage,
+text=cursorPrice
 ))
-userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[0], cursorPrice, True, 0.1, 0, 1, 1))
+userVariables.powerUps.append(powerUp.PowerUP(userVariables.shopButtons[0], cursorPrice, True, 0.1, 0, 1, 1, userVariables.upgradeLines[0]))
 
 # Grandma Upgrade Line
 userVariables.upgradeLines.append(upgrade.UpgradeLine(50, GRANDMAUPGRADEPATH, GRANDMAUPGRADES, 0, []))
 
 # Grandma
-create_category(0, 1, grandmaPrice, userVariables.grandmaPower, grandmaPurchaseButtonImage, grandmaPrice, 2)
+create_category(0,1, grandmaPrice, userVariables.grandmaPower, grandmaPurchaseButtonImage, grandmaPrice, 2, userVariables.upgradeLines[1])
 
 # Farm
 create_category(1, 2, farmPrice, userVariables.farmPower, farmPurchaseButtonImage, farmPrice, 3)
