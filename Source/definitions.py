@@ -84,6 +84,24 @@ GRANDMAUPGRADES = [
     ("FoamTippedCanes.png", 5000000000000000000000000000000000000, 0, 2, 0, 1, False, 600),
 ]
 
+FARMUPGRADES = [
+    ("CheapHoes.png", 1000, 0, 2, 0, 1, False, 1),
+    ("Fertilizer", 5000, 0, 2, 0, 1, False, 5),
+    ("CookieTrees.png", 50000, 0, 2, 0, 1, False, 25),
+    ("Genetically-ModifiedCookies.png", 5000000, 0, 2, 0, 1, False, 50),
+    ("GingerbreadScarecrows.png", 500000000, 0, 2, 0, 1, False, 100),
+    ("PulsarSprinklers.png", 50000000000, 0, 2, 0, 1, False, 150),
+    ("FudgeFungus.png", 50000000000000, 0, 2, 0, 1, False, 200),
+    ("WheatTriffids.png", 50000000000000000, 0, 2, 0, 1, False, 250),
+    ("HumanPesticides.png", 50000000000000000000, 0, 2, 0, 1, False, 300),
+    ("Barnstars.png", 50000000000000000000000, 0, 2, 0, 1, False, 350),
+    ("Lindworms.png", 500000000000000000000000000, 0, 2, 0, 1, False, 400),
+    ("GlobalSeedVault.png", 5000000000000000000000000000, 0, 2, 0, 1, False, 450),
+    ("Reverse-Veganism.png", 50000000000000000000000000000000, 0, 2, 0, 1, False, 500),
+    ("CookieMulch.png", 500000000000000000000000000000000000, 0, 2, 0, 1, False, 550),
+    ("Self-DrivingTractors.png", 5000000000000000000000000000000000000, 0, 2, 0, 1, False, 600),
+]
+
 UPGRADEBUTTONHEGIHT = 100
 
 # Fonts
